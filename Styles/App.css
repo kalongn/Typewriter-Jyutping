@@ -1,3 +1,13 @@
 * {
     font-family: 'Noto Sans HK', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style: none;
+}
+
+:root {
+    --color-primary: #F6F6F6;
+    --color-secondary: #090909;
+    --color-ascent: #e22b68;
 }
