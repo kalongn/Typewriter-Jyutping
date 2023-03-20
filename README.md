@@ -1,2 +1,2 @@
-# Typewritier pinyu for cantonese. <br>
+# Typewritier jyutping for cantonese. <br>
 ## WIP  <br>
