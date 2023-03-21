@@ -15,8 +15,23 @@
 
 <body>
     <script defer src="../Scripts/App.js"></script>
-    <h1 lang="zh-Hant">Test h1: 法律之前人人平等，並有權享受法律的平等保護，不受任何歧視。</h1>
-    <div lang="zh-Hant">Test div: 法律之前人人平等，並有權享受法律的平等保護，不受任何歧視。</div>
+    <div id="loading-screen-wrapper" class="loading-screen-wrapper">
+        <h1 class="text large-size-text loading-screen-text loading-text-wrapper">
+            <div>Loading</div>
+            <div class="loading-dots">.</div>
+            <div class="loading-dots">.</div>
+            <div class="loading-dots">.</div>
+        </h1>
+    </div>
+    <!--<script>
+        window.addEventListener("load", function () {
+            let loader = document.getElementById("loading-screen-wrapper");
+            loader.style.display = "none";
+        })
+    </script>-->
+    <div class="main-page-wrapper">
+        Test
+    </div>
 </body>
 
 </html>
