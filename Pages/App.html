@@ -29,7 +29,7 @@
             let loader = document.getElementById("loading-screen-wrapper");
             console.log(loader.classList);
             loader.classList.toggle("fade");
-            setTimeout(function () { loader.style.display = "none" }, 800);
+            setTimeout(function () { loader.remove() }, 800);
         })
     </script>
 
