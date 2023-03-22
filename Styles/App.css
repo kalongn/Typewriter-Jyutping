@@ -24,7 +24,7 @@ body {
 }
 
 .large-size-text {
-    font-size: 9rem;
+    font-size: 4.5rem;
 }
 
 .loading-screen-wrapper {
@@ -32,6 +32,15 @@ body {
     height: 100%;
     display: grid;
     place-items: center;
+}
+
+#loading-screen-wrapper {
+    opacity: 1;
+    transition: opacity .6s ease-in-out;
+}
+
+#loading-screen-wrapper.fade {
+    opacity: 0;
 }
 
 .loading-text-wrapper {
@@ -46,6 +55,7 @@ body {
     position: relative;
     left: 0;
     bottom: 0;
+
 }
 
 .loading-dots:nth-child(2) {
@@ -56,6 +66,7 @@ body {
     animation-delay: .4s;
 }
 
+
 @keyframes MoveUpDown {
 
     0%,
@@ -64,7 +75,7 @@ body {
     }
 
     50% {
-        bottom: 1rem;
+        bottom: .9rem;
     }
 }
 
