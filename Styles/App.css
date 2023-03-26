@@ -117,7 +117,7 @@ div {
 .main-page-wrapper {
     height: 100%;
     width: 100%;
-    grid-template-rows: 1fr 75% 1fr;
+    grid-template-rows: 1fr 72% 1fr;
 }
 
 .nav-bar-wrapper {
@@ -125,6 +125,53 @@ div {
     justify-content: center;
     align-items: center;
     background-color: var(--color-primary-dim);
+}
+
+.nav-bar-wrapper>* {
+    padding: 32px;
+}
+
+.left-nav-wrapper::after {
+    content: '';
+    position: absolute;
+    margin-top: 84px;
+    border: 3px solid var(--color-ascent);
+    border-radius: 10px;
+    width: 17.6875em;
+    display: block;
+
+}
+
+.left-nav-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: fit-content;
+    gap: 15px;
+    margin-top: -16px;
+}
+
+.logo {
+    width: 64px;
+    height: 64px;
+}
+
+.logo-text {
+    font-weight: 500;
+    font-size: 48px;
+}
+
+.right-nav-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: fit-content;
+    gap: 24px;
+}
+
+.icon {
+    height: 48px;
+    width: 48px;
 }
 
 .center-cotent-wrapper {
