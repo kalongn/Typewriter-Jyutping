@@ -20,6 +20,10 @@ body {
     --color-ascent: #e22b68;
 }
 
+div {
+    display: block;
+}
+
 .text {
     color: var(--color-secondary);
 }
@@ -86,4 +90,32 @@ body {
     -webkit-user-select: none;
     -ms-user-select: none;
     user-select: none;
+}
+
+.main-page-wrapper {
+    display: grid; 
+    height: 100%;
+    width: 100%;
+    grid-template-rows: 1fr 75% 1fr;
+}
+
+.nav-bar-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--color-primary-dim);
+}
+
+.center-cotent-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--color-primary-dim);
 }
