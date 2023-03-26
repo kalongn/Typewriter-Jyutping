@@ -84,6 +84,24 @@ div {
     }
 }
 
+.animate-bottom {
+    position: relative;
+    animation-name: animatebottom;
+    animation-duration: .6s;
+}
+
+@keyframes animatebottom {
+    from {
+        bottom: -6em;
+        opacity: 0
+    }
+
+    to {
+        bottom: 0;
+        opacity: 1
+    }
+}
+
 .unselectable {
     -moz-user-select: none;
     -khtml-user-select: none;
@@ -92,8 +110,11 @@ div {
     user-select: none;
 }
 
+#main-page-wrapper {
+    display: none;
+}
+
 .main-page-wrapper {
-    display: grid; 
     height: 100%;
     width: 100%;
     grid-template-rows: 1fr 75% 1fr;
