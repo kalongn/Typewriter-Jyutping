@@ -1,5 +1,6 @@
 * {
     font-family: 'Noto Sans HK', sans-serif;
+    font-size: 16px;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -117,6 +118,7 @@ div {
 .main-page-wrapper {
     height: 100%;
     width: 100%;
+    grid-auto-flow: row;
     grid-template-rows: 1fr 72% 1fr;
 }
 
@@ -125,6 +127,21 @@ div {
     justify-content: center;
     align-items: center;
     background-color: var(--color-primary-dim);
+    gap: 45rem;
+}
+
+/*Tablet size or smaller laptop */
+@media screen and (max-width: 1200px) {
+    .nav-bar-wrapper {
+        gap: 30rem;
+    }
+}
+
+/*Mobile size or smaller display */
+@media screen and (max-width: 900px) {
+    .nav-bar-wrapper {
+        gap: 3.6rem;
+    }
 }
 
 .nav-bar-wrapper>* {
@@ -134,10 +151,10 @@ div {
 .left-nav-wrapper::after {
     content: '';
     position: absolute;
-    margin-top: 84px;
+    margin-top: 72px;
     border: 3px solid var(--color-ascent);
     border-radius: 10px;
-    width: 17.6875em;
+    width: 186px;
     display: block;
 
 }
@@ -147,18 +164,18 @@ div {
     justify-content: center;
     align-items: center;
     width: fit-content;
-    gap: 15px;
+    gap: 9px;
     margin-top: -16px;
 }
 
 .logo {
-    width: 64px;
-    height: 64px;
+    width: 48px;
+    height: 48px;
 }
 
 .logo-text {
     font-weight: 500;
-    font-size: 48px;
+    font-size: 32px;
 }
 
 .right-nav-wrapper {
@@ -166,12 +183,12 @@ div {
     justify-content: center;
     align-items: center;
     width: fit-content;
-    gap: 24px;
+    gap: 15px;
 }
 
 .icon {
-    height: 48px;
-    width: 48px;
+    height: 24px;
+    width: 24px;
 }
 
 .center-cotent-wrapper {
