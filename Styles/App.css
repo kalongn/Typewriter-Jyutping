@@ -175,17 +175,19 @@ div {
 .left-nav-wrapper::after {
     content: '';
     position: absolute;
-    left: 0;
+    left: 50%;
     bottom: -15px;
     height: 5px;
     width: 0;
     background-color: var(--color-ascent);
     border-radius: 3px;
-    transition: width 0.3s ease-in-out;
+    transform: translateX(-50%);
+    transition: width 0.3s ease-in-out, transform 0.3s ease-in-out;
 }
 
 .left-nav-wrapper:hover::after {
     width: 100%;
+    transform: translateX(-50%) scaleX(1);
 }
 
 .logo {
