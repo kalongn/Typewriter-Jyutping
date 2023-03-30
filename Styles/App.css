@@ -226,7 +226,7 @@ img {
 @keyframes up-fast {
     0%,100% {
         bottom: 0;
-        opacity: 1
+        opacity: .5
     }
 
     50% {
