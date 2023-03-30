@@ -218,6 +218,23 @@ img {
     opacity: .5;
 }
 
+#themes.swap {
+    position: relative;
+    animation: up-fast .300s linear;
+}
+
+@keyframes up-fast {
+    0%,100% {
+        bottom: 0;
+        opacity: 1
+    }
+
+    50% {
+        bottom: .6rem;
+        opacity: 0
+    }
+}
+
 .icon-wrapper::after {
     content: '';
     position: absolute;

@@ -13,7 +13,7 @@
     <title>Typewriter jyutping</title>
 </head>
 
-<body>
+<body onload="startWeb()">
     <script defer src="../Scripts/App.js"></script>
 
     <div id="loading-screen-wrapper" class="loading-screen-wrapper">
@@ -51,9 +51,9 @@
                         <img src="../Img/gear_six_icon.png" alt="Setting" class="icon">
                     </div>
                 </a>
-                <a href="#" onclick="return false;" class="right-nav-link-wrapper">
+                <a href="#" onclick="switchThemes()" class="right-nav-link-wrapper">
                     <div class="icon-wrapper">
-                        <img src="../Img/sun_icon.png" alt="Light Mode" class="icon">
+                        <img src="../Img/sun_icon.png" alt="Light Mode" class="icon" id="themes">
                     </div>
                 </a>
             </div>
