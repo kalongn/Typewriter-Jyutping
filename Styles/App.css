@@ -207,11 +207,15 @@ img {
     height: 24px;
     width: 24px;
     opacity: 1;
-    transition: opacity .24s ease-in-out;
+    transition: opacity .24s ease;
 }
 
 .icon:hover {
     opacity: .5;
+}
+
+.icon:active {
+    opacity: 1;
 }
 
 #themes.swap {
