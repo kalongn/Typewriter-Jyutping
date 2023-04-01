@@ -14,7 +14,7 @@ function switchThemes() {
         }, 150);
         setTimeout(function () {
             currentTheme.classList.remove("swap");
-        }, 310);
+        }, 300);
 
     } else {
         currentTheme.classList.toggle("swap");
@@ -24,7 +24,7 @@ function switchThemes() {
         }, 150);
         setTimeout(function () {
             currentTheme.classList.remove("swap");
-        }, 310);
+        }, 300);
     }
     webpageTheme = !webpageTheme;
     return false;
