@@ -21,6 +21,11 @@ body {
     --color-ascent: #e22b68;
 }
 
+a {
+    text-decoration: none;
+    color: var(--color-secondary);
+}
+
 div {
     display: block;
 }
@@ -137,20 +142,6 @@ img {
     gap: 45rem;
 }
 
-/*Tablet size or smaller laptop */
-@media screen and (max-width: 1200px) {
-    .nav-bar-wrapper {
-        gap: 30rem;
-    }
-}
-
-/*Mobile size or smaller display */
-@media screen and (max-width: 900px) {
-    .nav-bar-wrapper {
-        gap: 3.6rem;
-    }
-}
-
 .left-nav-wrapper {
     display: flex;
     justify-content: center;
@@ -199,22 +190,22 @@ img {
     gap: 15px;
 }
 
-.right-nav-link-wrapper {
+.icon-link-wrapper {
     position: relative;
+    opacity: 1;
+    transition: opacity .24s ease;
 }
 
 .icon {
     height: 24px;
     width: 24px;
-    opacity: 1;
-    transition: opacity .24s ease;
 }
 
-.icon:hover {
+.icon-link-wrapper:hover {
     opacity: .5;
 }
 
-.icon:active {
+.icon-link-wrapper:active {
     opacity: 1;
 }
 
@@ -237,7 +228,7 @@ img {
     }
 }
 
-.icon-wrapper::before {
+/*.icon-wrapper::before {
     content: '';
     position: absolute;
     left: 50%;
@@ -253,7 +244,7 @@ img {
 .icon-wrapper:hover::before {
     width: 100%;
     transform: translateX(-50%) scaleX(1);
-}
+}*/
 
 
 /* Center of Main Page stuff */
@@ -271,4 +262,58 @@ img {
     justify-content: center;
     align-items: center;
     background-color: var(--color-primary-dim);
+    gap: 33rem;
+}
+
+.left-footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    width: fit-content;
+}
+
+.right-footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    width: fit-content;
+}
+
+.footer-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: .3rem;
+}
+
+.footer-icon-text {
+    font-size: 1rem;
+    margin-top: -1px;
+}
+
+/*Tablet size or smaller laptop */
+@media screen and (max-width: 1200px) {
+    .nav-bar-wrapper {
+        gap: 27rem;
+    }
+
+    .footer-wrapper {
+        gap: 18rem;
+    }
+}
+
+/*Mobile size or smaller display */
+@media screen and (max-width: 900px) {
+    .nav-bar-wrapper {
+        gap: 3.6rem;
+    }
+
+    .footer-wrapper {
+        gap: 2.4rem;
+    }
+    .footer-icon-text {
+        display: none;
+    }
 }
