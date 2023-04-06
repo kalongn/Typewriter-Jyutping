@@ -202,7 +202,7 @@ img {
 }
 
 .icon-link-wrapper:hover {
-    opacity: .5;
+    opacity: .45;
 }
 
 .icon-link-wrapper:active {
@@ -219,7 +219,7 @@ img {
     0%,
     100% {
         bottom: 0;
-        opacity: .5
+        opacity: .45
     }
 
     50% {
