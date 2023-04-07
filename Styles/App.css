@@ -179,7 +179,7 @@ img {
 
 .logo-text {
     font-weight: bold;
-    font-size: 36px;
+    font-size: 2.25em;
 }
 
 .right-nav-wrapper {
@@ -264,7 +264,7 @@ img {
 }
 
 .typing-area-wrapper {
-    font-size: 1.8rem;
+    font-size: 1.8em;
     height: fit-content;
 }
 
@@ -282,7 +282,7 @@ img {
 }
 
 .character-pronouciation {
-    font-size: .8rem;
+    font-size: .8em;
 }
 
 /* Footer stuff */
@@ -318,7 +318,7 @@ img {
 }
 
 .footer-icon-text {
-    font-size: 1rem;
+    font-size: 1em;
 }
 
 /*Tablet size or smaller laptop */
