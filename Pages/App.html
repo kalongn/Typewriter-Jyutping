@@ -24,15 +24,6 @@
             <div class="loading-dots">.</div>
         </h1>
     </div>
-    <script>
-        window.addEventListener("load", function () {
-            let loader = document.getElementById("loading-screen-wrapper");
-            let mainpage = document.getElementById("main-page-wrapper");
-            console.log(loader.classList);
-            loader.classList.toggle("fade");
-            setTimeout(function () { loader.remove(); mainpage.style.display = "grid"; }, 800);
-        })
-    </script>
 
     <div id="main-page-wrapper" class="main-page-wrapper animate-bottom">
         <header class="nav-bar-wrapper unselectable">
@@ -891,8 +882,15 @@
                         </div>s
                     </div>
                 </div>
+                <div class="restart-button-wrapper">
+                    <button onclick="restartButtonFunction()" id="restart-test-button" class="restart-test-button">
+                        <img src="../Img/restart_icon.png" alt="Restart Test" class="icon">
+                    </button>
+                </div>
                 <div class="keybind-area-wrapper">
-                    Tab + Enter to Restart Test
+                    <div class="keybinds">
+                        restart test - <key>leftshift</key> + <key>r</key>
+                    </div>
                 </div>
             </div>
         </main>
