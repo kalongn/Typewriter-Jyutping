@@ -260,15 +260,15 @@ img {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    grid-area: 3rem;
+    gap: 3rem;
 }
 
 .typing-area-wrapper {
     font-size: 1.8em;
-    height: 186px;
+    height: 140px;
     overflow: hidden;
-    padding: 32px;
-    margin-left: unset;
+    padding: 0 32px 0 32px;
+    width: 70%;
 }
 
 .line {
@@ -276,8 +276,6 @@ img {
     flex-direction: row;
     flex-wrap: wrap;
     gap: 6px;
-    margin-left: 64px;
-    margin-right: 64px;
 }
 
 .characters-wrapper {
@@ -288,7 +286,8 @@ img {
 }
 
 .character-pronouciation {
-    font-size: .8em;
+    font-size: .6em;
+    margin-bottom: -2px;
 }
 
 /* Footer stuff */
