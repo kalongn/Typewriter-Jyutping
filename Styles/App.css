@@ -398,7 +398,7 @@ key {
 
 /*Tablet size or smaller laptop */
 @media screen and (max-width: 1200px) {
-    
+
 }
 
 /*Mobile size or smaller display */
@@ -408,6 +408,10 @@ key {
     }
 
     .footer-icon-text {
+        display: none;
+    }
+
+    .keybind-area-wrapper {
         display: none;
     }
 }
