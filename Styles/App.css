@@ -398,27 +398,13 @@ key {
 
 /*Tablet size or smaller laptop */
 @media screen and (max-width: 1200px) {
-    .nav-bar-wrapper {
-        gap: 27rem;
-    }
-
-    .footer-wrapper {
-        gap: 15rem;
-    }
+    
 }
 
 /*Mobile size or smaller display */
 @media screen and (max-width: 900px) {
     .logo-text {
         display: none;
-    }
-
-    .nav-bar-wrapper {
-        gap: 10rem;
-    }
-
-    .footer-wrapper {
-        gap: 2.4rem;
     }
 
     .footer-icon-text {
