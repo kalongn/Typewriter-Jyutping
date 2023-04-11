@@ -46,6 +46,11 @@ document.addEventListener('keydown', event => {
     keysPressed.add(event.code);
     if (event.code === 'ShiftLeft') {
         restartButton.classList.add('selected');
+        document.addEventListener('keyup', event => {
+            if (event.code === 'ShiftLeft') {
+                restartButton.classList.remove('selected');
+            }
+        });
     }
     for (const key of hotkey) {
         if (!keysPressed.has(key)) {
