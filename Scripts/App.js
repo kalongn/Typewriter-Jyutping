@@ -88,12 +88,20 @@ function selectMeasures(id) {
     otherMeasures.classList.toggle('selected');
 }
 
-function selectDurations(id) {
+function selectDurations(measure, id) {
+    let allDurations;
+    switch (measure) {
+        case 1:
+            allDurations = ['time-option-1', 'time-option-2', 'time-option-3', 'time-option-4'];
+            break;
+        default:
+            allDurations = ['words-option-1', 'words-option-2', 'words-option-3', 'words-option-4'];
+            break;
+    }
     const currentDurations = document.getElementById(id);
     if (currentDurations.classList.contains('selected')) {
         return;
     }
-    const allDurations = ['option-1', 'option-2', 'option-3', 'option-4'];
     allDurations.forEach(function (x) {
         if (document.getElementById(x).classList.contains('selected')) {
             document.getElementById(x).classList.toggle('selected');
