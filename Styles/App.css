@@ -302,12 +302,11 @@ img {
 }
 
 .restart-button-wrapper::after {
-    content: 'Restart test';
+    content: 'restart test';
     text-align: center;
     position: absolute;
     top: 100%;
-    left: 50%;
-    transform: translateX(-50%) scaleY(0);
+    transform: translateY(-50%) scaleY(0);
     opacity: 0;
     background-color: var(--color-secondary);
     color: var(--color-primary);
@@ -319,7 +318,7 @@ img {
 
 .restart-button-wrapper:hover::after {
     opacity: 1;
-    transform: translateX(-50%) scaleY(1)
+    transform: translateY(-25%) scaleY(1)
 }
 
 .restart-test-button {
