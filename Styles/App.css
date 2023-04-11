@@ -328,10 +328,6 @@ img {
     gap: .5rem;
 }
 
-.difficulties {
-    margin-top: -2px;
-}
-
 .difficulties-options {
     display: flex;
     justify-content: center;
