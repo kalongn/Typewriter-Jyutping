@@ -63,3 +63,47 @@ document.addEventListener('keydown', event => {
 document.addEventListener('keyup', event => {
     keysPressed.delete(event.code);
 });
+
+function selectDifficulties(id) {
+    const difficulties = document.getElementById(id);
+    difficulties.classList.toggle('selected');
+}
+
+function selectMeasures(id) {
+    const measures = document.getElementById(id);
+    if (measures.classList.contains('selected')) {
+        return;
+    }
+    let otherMeasures;
+    if (id === 'words') {
+        otherMeasures = document.getElementById('timer')
+        document.getElementById('words-options').style.display = 'flex';
+        document.getElementById('timer-options').style.display = 'none';
+    } else {
+        otherMeasures = document.getElementById('words')
+        document.getElementById('timer-options').style.display = 'flex';
+        document.getElementById('words-options').style.display = 'none';
+    }
+    measures.classList.toggle('selected');
+    otherMeasures.classList.toggle('selected');
+}
+
+function selectDurations(id) {
+    const currentDurations = document.getElementById(id);
+    if (currentDurations.classList.contains('selected')) {
+        return;
+    }
+    const allDurations = ['option-1', 'option-2', 'option-3', 'option-4'];
+    allDurations.forEach(function (x) {
+        if (document.getElementById(x).classList.contains('selected')) {
+            document.getElementById(x).classList.toggle('selected');
+        }
+        if (x === id) {
+            document.getElementById(x).classList.toggle('selected');
+        }
+    })
+}
+
+function replyonClickID(id) {
+    return id;
+}

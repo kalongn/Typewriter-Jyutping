@@ -27,32 +27,107 @@
 
     <div id="main-page-wrapper" class="main-page-wrapper animate-bottom text">
         <header class="nav-bar-wrapper unselectable">
-            <a href="#" onclick="return false;" class="left-nav-wrapper">
+            <a onclick="return false;" class="left-nav-wrapper">
                 <img src="../Img/Logo_Simplified.png" alt="WebPage Logo" class="logo">
                 <div class="logo-text text">JyutPing</div>
             </a>
             <div class="right-nav-wrapper">
                 <a href="#" onclick="return false;" class="icon-link-wrapper">
-                    <div class="icon-wrapper">
-                        <img src="../Img/user_icon.png" alt="Account" class="icon">
-                    </div>
+                    <img src="../Img/user_icon.png" alt="Account" class="icon">
                 </a>
                 <a href="#" onclick="return false;" class="icon-link-wrapper">
-                    <div class="icon-wrapper">
-                        <img src="../Img/gear_six_icon.png" alt="Setting" class="icon">
-                    </div>
+                    <img src="../Img/gear_six_icon.png" alt="Setting" class="icon">
                 </a>
-                <a href="#" onclick="switchThemes()" class="icon-link-wrapper">
-                    <div class="icon-wrapper">
-                        <img src="../Img/sun_icon.png" alt="Light Mode" class="icon" id="themes">
-                    </div>
+                <a onclick="switchThemes()" class="icon-link-wrapper">
+                    <img src="../Img/sun_icon.png" alt="Light Mode" class="icon" id="themes">
                 </a>
             </div>
         </header>
         <main class="center-cotent-wrapper">
             <div class="center-content-items unselectable">
                 <div class="options-bar-wrapper">
-                    Options
+                    <div class="options-flex-wrapper">
+                        <a onclick="selectDifficulties(this.id)" id="initial" class="icon-link-wrapper">
+                            <img src="../Img/user_icon.png" alt="initial" class="icon">
+                            <div class="difficulties">
+                                initial
+                            </div>
+                        </a>
+                        <a onclick="selectDifficulties(this.id)" id="vowel" class="icon-link-wrapper">
+                            <img src="../Img/user_icon.png" alt="vowel" class="icon">
+                            <div class="difficulties">
+                                vowel
+                            </div>
+                        </a>
+                        <a onclick="selectDifficulties(this.id)" id="tone" class="icon-link-wrapper">
+                            <img src="../Img/user_icon.png" alt="tone" class="icon">
+                            <div class="difficulties">
+                                tone
+                            </div>
+                        </a>
+                    </div>
+                    <div class="line-divider"></div>
+                    <div class="options-flex-wrapper">
+                        <a onclick="selectMeasures(this.id)" id="timer" class="icon-link-wrapper selected">
+                            <img src="../Img/user_icon.png" alt="Account" class="icon">
+                            <div class="difficulties">
+                                timer
+                            </div>
+                        </a>
+                        <a onclick="selectMeasures(this.id)" id="words" class="icon-link-wrapper">
+                            <img src="../Img/user_icon.png" alt="Account" class="icon">
+                            <div class="difficulties">
+                                words
+                            </div>
+                        </a>
+                    </div>
+                    <div class="line-divider"></div>
+                    <div class="options-flex-wrapper">
+                        <div id="timer-options" class="difficulties-options">
+                            <a onclick="selectDurations(this.id)" id="option-1" class="icon-link-wrapper selected">
+                                <div class="difficulties">
+                                    15
+                                </div>
+                            </a>
+                            <a onclick="selectDurations(this.id)" id="option-2" class="icon-link-wrapper">
+                                <div class="difficulties">
+                                    30
+                                </div>
+                            </a>
+                            <a onclick="selectDurations(this.id)" id="option-3" class="icon-link-wrapper">
+                                <div class="difficulties">
+                                    60
+                                </div>
+                            </a>
+                            <a onclick="selectDurations(this.id)" id="option-4" class="icon-link-wrapper">
+                                <div class="difficulties">
+                                    120
+                                </div>
+                            </a>
+                        </div>
+                        <div id="words-options" class="difficulties-options">
+                            <a onclick="selectDurations(this.id)" id="option-1" class="icon-link-wrapper">
+                                <div class="difficulties">
+                                    10
+                                </div>
+                            </a>
+                            <a onclick="selectDurations(this.id)" id="option-2" class="icon-link-wrapper">
+                                <div class="difficulties">
+                                    30
+                                </div>
+                            </a>
+                            <a onclick="selectDurations(this.id)" id="option-3" class="icon-link-wrapper">
+                                <div class="difficulties">
+                                    50
+                                </div>
+                            </a>
+                            <a onclick="selectDurations(this.id)" id="option-4" class="icon-link-wrapper">
+                                <div class="difficulties">
+                                    100
+                                </div>
+                            </a>
+                        </div>
+                    </div>
                 </div>
                 <div class="typing-area-wrapper">
                     <div class="test-timer">
@@ -906,19 +981,19 @@
                     </div>
                 </a>
                 <a href="https://ko-fi.com/kalongngai" target="_blank" class="icon-link-wrapper">
-                    <div class="icon-wrapper footer-item">
+                    <div class="footer-item">
                         <img src="../Img/support_icon.png" alt="Support the developer" class="icon">
                         <div class="footer-icon-text">Support</div>
                     </div>
                 </a>
                 <a href="https://github.com/kalongn/Typewriter-Jyutping" target="_blank" class="icon-link-wrapper">
-                    <div class="icon-wrapper footer-item">
+                    <div class="footer-item">
                         <img src="../Img/github_icon.png" alt="GitHub for this webpage" class="icon">
                         <div class="footer-icon-text">GitHub</div>
                     </div>
                 </a>
                 <a href="https://twitter.com/Ka_Long_N" target="_blank" class="icon-link-wrapper">
-                    <div class="icon-wrapper footer-item">
+                    <div class="footer-item">
                         <img src="../Img/twitter_icon.png" alt="developer's twitter" class="icon">
                         <div class="footer-icon-text">Twitter</div>
                     </div>
@@ -926,13 +1001,13 @@
             </div>
             <div class="right-footer">
                 <a href="Terms.html" target="_blank" class="icon-link-wrapper">
-                    <div class="icon-wrapper footer-item">
+                    <div class="footer-item">
                         <img src="../Img/terms_icon.png" alt="Terms of Service" class="icon">
                         <div class="footer-icon-text">Terms</div>
                     </div>
                 </a>
                 <a href="Version.html" target="_blank" class="icon-link-wrapper">
-                    <div class="icon-wrapper footer-item">
+                    <div class="footer-item">
                         <img src="../Img/version_icon.png" alt="Version Note" class="icon">
                         <div class="footer-icon-text">Version 0.0</div>
                     </div>
