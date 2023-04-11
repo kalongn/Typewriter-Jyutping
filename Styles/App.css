@@ -201,6 +201,7 @@ img {
 .icon {
     height: 24px;
     width: 24px;
+    filter: invert(0%) sepia(29%) saturate(5165%) hue-rotate(107deg) brightness(86%) contrast(93%);
 }
 
 .icon-link-wrapper:hover {
@@ -285,15 +286,12 @@ img {
     gap: .1rem;
     color: var(--color-secondary);
     opacity: .5;
-    transition: opacity .24s ease, color .24s ease;
+    transition: opacity .24s ease, color .24s ease, filter .24s ease;
 }
 
-.options-flex-wrapper .icon-link-wrapper:hover {
-    opacity: 1;
-}
-
+.options-flex-wrapper .icon-link-wrapper:hover,
 .options-flex-wrapper .icon-link-wrapper.selected:hover {
-    opacity: .75;
+    opacity: 1;
 }
 
 .options-flex-wrapper .icon-link-wrapper:active,
@@ -304,6 +302,10 @@ img {
 .options-flex-wrapper .icon-link-wrapper.selected {
     color: var(--color-ascent);
     opacity: 1;
+}
+
+.options-flex-wrapper .icon-link-wrapper.selected .icon {
+    filter: invert(39%) sepia(81%) saturate(5594%) hue-rotate(323deg) brightness(91%) contrast(94%);
 }
 
 .options-flex-wrapper .icon {

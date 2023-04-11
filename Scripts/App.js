@@ -18,12 +18,14 @@ function switchThemes() {
     if (webpageTheme) {
         setTimeout(function () {
             currentTheme.src = "../Img/moon_icon.png";
+            currentTheme.srcset = "../Img/moon_icon.svg";
             currentTheme.alt = "Dark Mode";
         }, 150);
 
     } else {
         setTimeout(function () {
             currentTheme.src = "../Img/sun_icon.png";
+            currentTheme.srcset = "../Img/sun_icon.svg";
             currentTheme.alt = "Light Mode";
         }, 150);
     }
