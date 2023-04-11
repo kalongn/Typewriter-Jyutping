@@ -263,6 +263,13 @@ img {
     gap: 3rem;
 }
 
+.test-timer {
+    position: absolute;
+    font-size: 1.25rem;
+    margin-top: -30px;
+    display: none;
+}
+
 .typing-area-wrapper {
     font-size: 1.8em;
     height: 140px;
@@ -394,6 +401,13 @@ key {
 
 .footer-icon-text {
     font-size: 1em;
+}
+
+/*Ultra wide monitor*/
+@media screen and (min-width: 1920px) {
+    .typing-area-wrapper {
+        width: 66ch;
+    }
 }
 
 /*Tablet size or smaller laptop */
