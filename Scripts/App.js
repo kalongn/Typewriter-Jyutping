@@ -1,3 +1,7 @@
+function startWeb() {
+    webpageTheme = true;
+}
+
 window.addEventListener("load", function () {
     let loader = document.getElementById("loading-screen-wrapper");
     let mainpage = document.getElementById("main-page-wrapper");
@@ -8,10 +12,6 @@ window.addEventListener("load", function () {
 
 let webpageTheme;
 const currentTheme = document.getElementById("themes");
-
-function startWeb() {
-    webpageTheme = true;
-}
 
 function switchThemes() {
     currentTheme.classList.toggle("swap");
@@ -37,34 +37,18 @@ function switchThemes() {
 }
 
 const restartButton = document.getElementById("restart-test-button");
-const hotkey = ['ShiftLeft', 'KeyR'];
-const keysPressed = new Set();
 
-function restartButtonFunction() {
-    console.log("It works");
-}
+function restartButtonFunction() { }
 
-document.addEventListener('keydown', event => {
-    keysPressed.add(event.code);
-    if (event.code === 'ShiftLeft') {
+function restartTestEvent(event) {
+    if (event.key === 'R' && event.shiftKey && event.type == 'keydown' || event.key === 'Shift' && event.type === 'keyup') {
+        restartButton.classList.remove('selected');
+    } else if (event.key === 'Shift' && event.type === 'keydown') {
         restartButton.classList.add('selected');
-        document.addEventListener('keyup', event => {
-            if (event.code === 'ShiftLeft') {
-                restartButton.classList.remove('selected');
-            }
-        });
     }
-    for (const key of hotkey) {
-        if (!keysPressed.has(key)) {
-            return;
-        }
-    }
-    restartButton.click();
-    restartButton.classList.remove('selected');
-});
-document.addEventListener('keyup', event => {
-    keysPressed.delete(event.code);
-});
+}
+document.addEventListener('keydown', restartTestEvent);
+document.addEventListener('keyup', restartTestEvent);
 
 function selectDifficulties(id) {
     const difficulties = document.getElementById(id);
@@ -91,20 +75,22 @@ function selectMeasures(id) {
 }
 
 function selectDurations(measure, id) {
-    let allDurations;
+    let allDurationsIDs, durations;
     switch (measure) {
         case 1:
-            allDurations = ['time-option-1', 'time-option-2', 'time-option-3', 'time-option-4'];
+            allDurationsIDs = ['time-option-1', 'time-option-2', 'time-option-3', 'time-option-4'];
+            durations = [15, 30, 60, 120];
             break;
         default:
-            allDurations = ['words-option-1', 'words-option-2', 'words-option-3', 'words-option-4'];
+            allDurationsIDs = ['words-option-1', 'words-option-2', 'words-option-3', 'words-option-4'];
+            durations = [10, 30, 50, 100];
             break;
     }
     const currentDurations = document.getElementById(id);
     if (currentDurations.classList.contains('selected')) {
         return;
     }
-    allDurations.forEach(function (x) {
+    allDurationsIDs.forEach(function (x) {
         if (document.getElementById(x).classList.contains('selected')) {
             document.getElementById(x).classList.toggle('selected');
         }
@@ -112,8 +98,4 @@ function selectDurations(measure, id) {
             document.getElementById(x).classList.toggle('selected');
         }
     })
-}
-
-function replyonClickID(id) {
-    return id;
 }

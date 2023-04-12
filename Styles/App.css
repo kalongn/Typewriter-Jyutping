@@ -276,6 +276,8 @@ img {
     border-radius: 6px;
     padding: 0 16px 0 16px;
     height: max-content;
+    opacity: 1;
+    transition: opacity .24s ease; 
 }
 
 .options-flex-wrapper .icon-link-wrapper {
@@ -342,11 +344,12 @@ img {
 }
 
 
-.test-timer {
+.duration-counter {
     position: absolute;
     font-size: 1.25rem;
     margin-top: -30px;
-    display: none;
+    opacity: 0;
+    transition: opacity .24s ease;
 }
 
 .typing-area-wrapper {
