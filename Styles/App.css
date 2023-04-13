@@ -377,6 +377,7 @@ img {
 .character-pronouciation {
     font-size: .6em;
     margin-bottom: -2px;
+    min-height: 25px;
 }
 
 .restart-button-wrapper {
