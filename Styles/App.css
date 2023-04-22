@@ -344,21 +344,34 @@ img {
     display: none;
 }
 
-
 .duration-counter {
-    position: absolute;
     font-size: 1.25rem;
-    margin-top: -30px;
-    opacity: 0;
+    opacity: 1;
+    padding: 3px;
     transition: opacity .24s ease;
 }
 
-.typing-area-wrapper {
+.full-typing-area-wrapper {
     font-size: 1.8em;
-    height: 140px;
+    height: 170px;
     overflow: hidden;
-    padding: 0 32px 0 32px;
-    width: 70%;
+    padding: 0 64px 0 64px;
+    position: relative;
+    max-width: 1000px;
+}
+
+.center-content-items:focus #line {
+    filter: blur(0px);
+}
+
+.center-content-items:focus #focus-wrapper {
+    display: none;
+}
+
+.main-typing-area-wrapper {
+    position: relative;
+    display: flex;
+    justify-content: center;
 }
 
 .line {
@@ -366,6 +379,29 @@ img {
     flex-direction: row;
     flex-wrap: wrap;
     gap: 6px;
+    opacity: .6;
+    filter: blur(6px);
+}
+
+.focus-wrapper {
+    position: absolute;
+    font-size: 2rem;
+    color: var(--color-ascent);
+    padding-top: 36px;
+}
+
+.line .active {
+    opacity: 1;
+}
+
+.line .correct {
+    opacity: 1;
+    color: var(--color-secondary);
+}
+
+.line .incorrect {
+    opacity: 1;
+    color: var(--color-ascent);
 }
 
 .characters-wrapper {
@@ -492,8 +528,8 @@ key {
 
 /*Ultra wide monitor*/
 @media screen and (min-width: 1920px) {
-    .typing-area-wrapper {
-        width: 66ch;
+    .full-typing-area-wrapper {
+        min-width: 800px;
     }
 }
 

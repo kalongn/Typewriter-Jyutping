@@ -46,8 +46,8 @@
             </div>
         </header>
         <main class="center-cotent-wrapper">
-            <div class="center-content-items unselectable">
-                <div id="options-bar" class="options-bar-wrapper">
+            <div id="typing-detection-zone" class="center-content-items" tabindex="0">
+                <div id="options-bar" class="options-bar-wrapper unselectable">
                     <div class="options-flex-wrapper">
                         <a onclick="selectDifficulties(this.id)" id="initial" class="icon-link-wrapper selected">
                             <div class="difficulties">
@@ -130,29 +130,36 @@
                         </div>
                     </div>
                 </div>
-                <div class="typing-area-wrapper">
+                <div id="full-typing-area-wrapper" class="full-typing-area-wrapper">
                     <div id="duration-counter" class="duration-counter">
-
+                        30
                     </div>
-                    <div id="line" class="line">
+                    <div class="main-typing-area-wrapper">
+                        <div class="focus-wrapper" id="focus-wrapper">
+                            <div>
+                                Click here to focus.
+                            </div>
+                        </div>
+                        <div id="line" class="line">
 
-                        <!--<div class="characters-wrapper">
-                            <div class="character-pronouciation">
-                                ji6
-                            </div>
-                            <div class="character">
-                                義
-                            </div>
-                        </div>-->
+                            <!--<div class="characters-wrapper">
+                                <div class="character-pronouciation">
+                                    ji6
+                                </div>
+                                <div class="character">
+                                    義
+                                </div>
+                            </div>-->
+                        </div>
                     </div>
                 </div>
-                <div class="restart-button-wrapper">
+                <div id="restart-button-wrapper" class="restart-button-wrapper">
                     <button onclick="restartButtonFunction()" id="restart-test-button" class="restart-test-button">
                         <img src="../Img/restart_icon.png" srcset="../Img/restart_icon.svg" alt="Restart Test"
                             class="icon">
                     </button>
                 </div>
-                <div class="keybind-area-wrapper">
+                <div class="keybind-area-wrapper unselectable">
                     <div class="keybinds">
                         Restart test - <key>Shift</key> + <key>R</key>
                     </div>
