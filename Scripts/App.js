@@ -4,6 +4,11 @@
 const Characters = AllDatas;
 
 /**
+ * typing answer
+ */
+let correctinputKey;
+
+/**
  * This function will be call when loading the webpage.
  */
 function startWeb() {
@@ -14,6 +19,7 @@ function startWeb() {
     initialStatus = true;
     vowelStatus = true;
     toneStatus = true;
+    correctinputKey = [];
 }
 
 //This is an event listener to detect whether the pages is fully loaded yet.
@@ -166,6 +172,7 @@ function selectDurations(measure, id) {
             break;
     }
     const currentDurations = document.getElementById(id);
+    const durationDisplay = document.getElementById('duration-counter');
     if (currentDurations.classList.contains('selected')) {
         return;
     }
@@ -183,6 +190,7 @@ function selectDurations(measure, id) {
                     wordsMeasureDuration = durations[allDurationsIDs.indexOf(x)];
                     break;
             }
+            durationDisplay.innerHTML = durations[allDurationsIDs.indexOf(x)];
         }
     })
     generateText();
@@ -192,35 +200,51 @@ const lineHTML = document.getElementById('line');
 
 function generateText() {
     lineHTML.innerHTML = '';
+    correctinputKey = [];
     switch (measure) {
         case 1:
             break;
         default:
             for (var i = 0; i < wordsMeasureDuration; i++) {
-                let randomIndex = Math.floor(Math.random() * Characters.Characters.length);
-                let wrapperDiv = document.createElement('div');
+                const randomIndex = Math.floor(Math.random() * Characters.Characters.length);
+                const wrapperDiv = document.createElement('div');
                 wrapperDiv.className = 'characters-wrapper';
                 lineHTML.appendChild(wrapperDiv);
-                let pronouciationDiv = document.createElement('div');
+                const pronouciationDiv = document.createElement('div');
                 pronouciationDiv.className = 'character-pronouciation';
                 wrapperDiv.appendChild(pronouciationDiv);
                 let pronouciationAssist = '';
                 if (initialStatus) {
                     pronouciationAssist += Characters.Characters[randomIndex]['Initial'];
+                    Characters.Characters[randomIndex]['Initial'].split('').forEach(i => correctinputKey.push(i));
                 }
                 if (vowelStatus) {
                     pronouciationAssist += Characters.Characters[randomIndex]['Vowel'];
+                    Characters.Characters[randomIndex]['Vowel'].split('').forEach(i => correctinputKey.push(i));
                 }
                 if (toneStatus) {
                     pronouciationAssist += Characters.Characters[randomIndex]['Tone'];
+                    Characters.Characters[randomIndex]['Tone'].toString().split('').forEach(i => correctinputKey.push(i));
                 }
                 pronouciationDiv.innerHTML = '' + pronouciationAssist;
-
-                let characterDiv = document.createElement('div');
+                const characterDiv = document.createElement('div');
                 characterDiv.className = 'character';
                 wrapperDiv.appendChild(characterDiv);
-                characterDiv.innerHTML = '' + Characters.Characters[randomIndex]['Characters'];
+                characterDiv.textContent = '' + Characters.Characters[randomIndex]['Characters'];
+                correctinputKey.push("");
             }
             break;
     }
 }
+
+function startGame() {
+
+}
+
+const typeDetectionZone = document.getElementById('typing-detection-zone');
+
+typeDetectionZone.addEventListener('keyup', typing => {
+    console.log(typing.key);
+});
+
+startGame();
