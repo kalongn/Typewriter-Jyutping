@@ -242,6 +242,7 @@ typeDetectionZone.addEventListener('keyup', typing => {
     const currentCharacter = document.querySelector('.characters-wrapper.current');
     const isLetter = key.length === 1 && key !== ' ';
     const isSpace = key === ' ';
+    
     if (isLetter) {
         if (key === expect) {
             indexOfCorrectinputKey++;
