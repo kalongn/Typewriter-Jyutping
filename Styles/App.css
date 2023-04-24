@@ -19,6 +19,7 @@ body {
     --color-primary-dim: #D9D9D9;
     --color-secondary: #090909;
     --color-ascent: #e22b68;
+    --color-ascent-compliment: #2b68e2;
 }
 
 a {
@@ -360,6 +361,10 @@ img {
     max-width: 1000px;
 }
 
+.center-content-items:focus {
+    outline: none;
+}
+
 .center-content-items:focus #line {
     filter: blur(0px);
 }
@@ -379,8 +384,12 @@ img {
     flex-direction: row;
     flex-wrap: wrap;
     gap: 6px;
-    opacity: .6;
     filter: blur(6px);
+    transition: opacity .1s ease;
+}
+
+.line .characters-wrapper {
+    opacity: .5;
 }
 
 .focus-wrapper {
@@ -388,20 +397,44 @@ img {
     font-size: 2rem;
     color: var(--color-ascent);
     padding-top: 36px;
+    z-index: 1;
 }
 
-.line .active {
+.characters-wrapper.current {
     opacity: 1;
 }
 
-.line .correct {
-    opacity: 1;
-    color: var(--color-secondary);
+@keyframes blick {
+
+    0%,
+    100% {
+        border-color: var(--color-secondary);
+    }
+
+    50% {
+        border-color: var(--color-primary);
+    }
 }
 
-.line .incorrect {
+.current>.character {
+    border: none;
+    animation: blick .6s infinite;
+}
+
+.center-content-items:focus .current>.character {
+    border-left: 2px solid;
+}
+
+.characters-wrapper.correct {
+    opacity: 1;
+    color: var(--color-ascent-compliment);
+    text-decoration: underline;
+}
+
+.characters-wrapper.incorrect {
     opacity: 1;
     color: var(--color-ascent);
+    text-decoration: underline;
 }
 
 .characters-wrapper {
@@ -453,6 +486,7 @@ img {
     height: 45px;
     width: 90px;
     border: none;
+    outline: none;
     border-radius: 6px;
     transition: background-color .24s ease;
 }
@@ -464,17 +498,16 @@ img {
 }
 
 .restart-test-button:hover,
-.restart-test-button.selected {
+.restart-test-button:focus {
     background-color: var(--color-primary-dim);
 }
 
 .restart-test-button:hover img,
-.restart-test-button.selected img {
+.restart-test-button:focus img {
     opacity: 1;
 }
 
-.restart-test-button:active img,
-.restart-test-button:active.selected img {
+.restart-test-button:active img {
     opacity: .45;
 }
 

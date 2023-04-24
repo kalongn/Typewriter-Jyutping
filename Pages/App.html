@@ -26,7 +26,7 @@
         </h1>
     </div>
 
-    <div id="main-page-wrapper" class="main-page-wrapper animate-bottom text">
+    <div id="main-page-wrapper" class="main-page-wrapper animate-bottom text unselectable">
         <header class="nav-bar-wrapper unselectable">
             <a onclick="return false;" class="left-nav-wrapper">
                 <img src="../Img/Logo_Simplified.png" alt="WebPage Logo" class="logo">
@@ -108,7 +108,7 @@
                         <div id="words-options" class="difficulties-options">
                             <a onclick="selectDurations(2,this.id)" id="words-option-1"
                                 class="icon-link-wrapper selected">
-                                <div id="difficulties">
+                                <div class="difficulties">
                                     10
                                 </div>
                             </a>
@@ -141,7 +141,6 @@
                             </div>
                         </div>
                         <div id="line" class="line">
-
                             <!--<div class="characters-wrapper">
                                 <div class="character-pronouciation">
                                     ji6
@@ -153,7 +152,7 @@
                         </div>
                     </div>
                 </div>
-                <div id="restart-button-wrapper" class="restart-button-wrapper">
+                <div id="restart-button-wrapper" class="restart-button-wrapper" tabindex="1">
                     <button onclick="restartButtonFunction()" id="restart-test-button" class="restart-test-button">
                         <img src="../Img/restart_icon.png" srcset="../Img/restart_icon.svg" alt="Restart Test"
                             class="icon">
@@ -161,7 +160,7 @@
                 </div>
                 <div class="keybind-area-wrapper unselectable">
                     <div class="keybinds">
-                        Restart test - <key>Shift</key> + <key>R</key>
+                        Restart test - <key>Tab</key> + <key>Enter</key>
                     </div>
                 </div>
             </div>

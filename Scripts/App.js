@@ -6,7 +6,7 @@ const Characters = AllDatas;
 /**
  * typing answer
  */
-let correctinputKey;
+let correctinputKey, indexOfCorrectinputKey;
 
 /**
  * This function will be call when loading the webpage.
@@ -20,6 +20,8 @@ function startWeb() {
     vowelStatus = true;
     toneStatus = true;
     correctinputKey = [];
+    indexOfCorrectinputKey = 0;
+    startGame();
 }
 
 //This is an event listener to detect whether the pages is fully loaded yet.
@@ -65,31 +67,9 @@ const restartButton = document.getElementById("restart-test-button");
 /**
  * To be implemented restartButton Functions, should be call once actiavted by keybind or clicked.
  */
-function restartButtonFunction() { }
-
-/**
- * Listen for a keydown and keyup events for the Keybind.
- * The keybind being Shift + R. 
- * If Shift is pressed, the button will gain a selected class.
- * If Shift is letgo, the button will remove the selected class.
- * If Shift + R is both pressed at the same time, the button will activate the restartButtonFunciton.
- * 
- * @param {*} event 
- *      Any events is being listented.
- */
-function restartTestEvent(event) {
-    if (event.key === 'R' && event.shiftKey && event.type == 'keydown') {
-        restartButton.classList.remove('selected');
-        generateText();
-    } else if (event.key === 'Shift' && event.type === 'keyup') {
-        restartButton.classList.remove('selected');
-    } else if (event.key === 'Shift' && event.type === 'keydown') {
-        restartButton.classList.add('selected');
-    }
+function restartButtonFunction() {
+    generateText();
 }
-//the event listner being added.
-document.addEventListener('keydown', restartTestEvent);
-document.addEventListener('keyup', restartTestEvent);
 
 let initialStatus, vowelStatus, toneStatus; //True = on, False = off
 /**
@@ -118,6 +98,7 @@ function selectDifficulties(id) {
 let measure; //the measure that the user selected. 1: timer or 2: words
 let timeMeasureDuration; //the duration of the time selected;
 let wordsMeasureDuration; //the duration of the words selected;
+const durationDisplay = document.getElementById('duration-counter'); //duration-counter
 /**
  * Alter between Words/Timer options, this is only the css implementation. 
  * The later functionality will be added soon.
@@ -137,11 +118,13 @@ function selectMeasures(id) {
         otherMeasures = document.getElementById('timer')
         document.getElementById('words-options').style.display = 'flex';
         document.getElementById('timer-options').style.display = 'none';
+        durationDisplay.innerHTML = wordsMeasureDuration;
     } else {
         measure = 1;
         otherMeasures = document.getElementById('words')
         document.getElementById('timer-options').style.display = 'flex';
         document.getElementById('words-options').style.display = 'none';
+        durationDisplay.innerHTML = timeMeasureDuration;
     }
     measures.classList.toggle('selected');
     otherMeasures.classList.toggle('selected');
@@ -172,7 +155,6 @@ function selectDurations(measure, id) {
             break;
     }
     const currentDurations = document.getElementById(id);
-    const durationDisplay = document.getElementById('duration-counter');
     if (currentDurations.classList.contains('selected')) {
         return;
     }
@@ -201,50 +183,90 @@ const lineHTML = document.getElementById('line');
 function generateText() {
     lineHTML.innerHTML = '';
     correctinputKey = [];
+    indexOfCorrectinputKey = 0;
     switch (measure) {
         case 1:
+            generateTextAmount(60);
             break;
         default:
-            for (var i = 0; i < wordsMeasureDuration; i++) {
-                const randomIndex = Math.floor(Math.random() * Characters.Characters.length);
-                const wrapperDiv = document.createElement('div');
-                wrapperDiv.className = 'characters-wrapper';
-                lineHTML.appendChild(wrapperDiv);
-                const pronouciationDiv = document.createElement('div');
-                pronouciationDiv.className = 'character-pronouciation';
-                wrapperDiv.appendChild(pronouciationDiv);
-                let pronouciationAssist = '';
-                if (initialStatus) {
-                    pronouciationAssist += Characters.Characters[randomIndex]['Initial'];
-                    Characters.Characters[randomIndex]['Initial'].split('').forEach(i => correctinputKey.push(i));
-                }
-                if (vowelStatus) {
-                    pronouciationAssist += Characters.Characters[randomIndex]['Vowel'];
-                    Characters.Characters[randomIndex]['Vowel'].split('').forEach(i => correctinputKey.push(i));
-                }
-                if (toneStatus) {
-                    pronouciationAssist += Characters.Characters[randomIndex]['Tone'];
-                    Characters.Characters[randomIndex]['Tone'].toString().split('').forEach(i => correctinputKey.push(i));
-                }
-                pronouciationDiv.innerHTML = '' + pronouciationAssist;
-                const characterDiv = document.createElement('div');
-                characterDiv.className = 'character';
-                wrapperDiv.appendChild(characterDiv);
-                characterDiv.textContent = '' + Characters.Characters[randomIndex]['Characters'];
-                correctinputKey.push("");
-            }
+            generateTextAmount(wordsMeasureDuration);
             break;
+    }
+    document.getElementById('typing-detection-zone').focus();
+    addClass(document.querySelector('.characters-wrapper'), 'current');
+}
+
+function generateTextAmount(amount) {
+    for (var i = 0; i < amount; i++) {
+        const randomIndex = Math.floor(Math.random() * Characters.Characters.length);
+        const wrapperDiv = document.createElement('div');
+        wrapperDiv.className = 'characters-wrapper';
+        lineHTML.appendChild(wrapperDiv);
+        const pronouciationDiv = document.createElement('div');
+        pronouciationDiv.className = 'character-pronouciation';
+        wrapperDiv.appendChild(pronouciationDiv);
+        let pronouciationAssist = '';
+        if (initialStatus) {
+            pronouciationAssist += Characters.Characters[randomIndex]['Initial'];
+            Characters.Characters[randomIndex]['Initial'].split('').forEach(i => correctinputKey.push(i));
+        }
+        if (vowelStatus) {
+            pronouciationAssist += Characters.Characters[randomIndex]['Vowel'];
+            Characters.Characters[randomIndex]['Vowel'].split('').forEach(i => correctinputKey.push(i));
+        }
+        if (toneStatus) {
+            pronouciationAssist += Characters.Characters[randomIndex]['Tone'];
+            Characters.Characters[randomIndex]['Tone'].toString().split('').forEach(i => correctinputKey.push(i));
+        }
+        pronouciationDiv.innerHTML = '' + pronouciationAssist;
+        const characterDiv = document.createElement('div');
+        characterDiv.className = 'character';
+        wrapperDiv.appendChild(characterDiv);
+        characterDiv.textContent = '' + Characters.Characters[randomIndex]['Characters'];
+        correctinputKey.push(' ');
     }
 }
 
-function startGame() {
+function addClass(el, name) {
+    el.className += ' ' + name;
+}
 
+function removeClass(el, name) {
+    el.classList.remove(name);
 }
 
 const typeDetectionZone = document.getElementById('typing-detection-zone');
-
 typeDetectionZone.addEventListener('keyup', typing => {
-    console.log(typing.key);
+    const key = typing.key;
+    const expect = correctinputKey[indexOfCorrectinputKey];
+    const currentCharacter = document.querySelector('.characters-wrapper.current');
+    const isLetter = key.length === 1 && key !== ' ';
+    const isSpace = key === ' ';
+    if (isLetter) {
+        if (key === expect) {
+            indexOfCorrectinputKey++;
+        } else {
+            addClass(currentCharacter, 'incorrect');
+        }
+    }
+
+    if (isSpace) {
+        if (expect === ' ') {
+            addClass(currentCharacter, 'correct');
+            indexOfCorrectinputKey++;
+        } else {
+            addClass(currentCharacter, 'incorrect');
+            while (correctinputKey[indexOfCorrectinputKey] !== ' ') {
+                indexOfCorrectinputKey++;
+            }
+            indexOfCorrectinputKey++;
+        }
+        removeClass(currentCharacter, 'current');
+        addClass(currentCharacter.nextSibling, 'current');
+    }
+    console.log(key, expect);
 });
 
-startGame();
+function startGame() {
+    generateText();
+}
