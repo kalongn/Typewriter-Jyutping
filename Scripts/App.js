@@ -28,9 +28,42 @@ function startWeb() {
 window.addEventListener("load", function () {
     let loader = document.getElementById("loading-screen-wrapper");
     let mainpage = document.getElementById("main-page-wrapper");
-    loader.classList.toggle("fade");
+    toggleClass(loader, "fade");
     setTimeout(function () { loader.remove(); mainpage.style.display = "grid"; }, 800);
 })
+
+/**
+ * Add a class to an element.
+ * @param {*} el 
+ *      the html element selected.
+ * @param {*} name 
+ *      the name of the class to be added.
+ */
+function addClass(el, name) {
+    el.classList.add(name);
+}
+
+/**
+ * Toggle a class to an element.
+ * @param {*} el 
+ *      the html element selected.
+ * @param {*} name 
+ *      the name of the class to be toggled.
+ */
+function toggleClass(el, name) {
+    el.classList.toggle(name);
+}
+
+/**
+ * Remove a class from an element.
+ * @param {*} el 
+ *      the html element selected.
+ * @param {*} name 
+ *      the name of the class to be added.
+ */
+function removeClass(el, name) {
+    el.classList.remove(name);
+}
 
 //Theme of the webpages
 let webpageTheme; // true -> light mode, false -> dark mode.
@@ -56,7 +89,7 @@ function switchThemes() {
         }, 150);
     }
     setTimeout(function () {
-        currentTheme.classList.remove("swap");
+        removeClass(currentTheme, 'swap');
     }, 300);
     webpageTheme = !webpageTheme;
 }
@@ -92,7 +125,7 @@ function selectDifficulties(id) {
             break;
     }
     generateText();
-    difficulties.classList.toggle('selected');
+    toggleClass(difficulties, 'selected');
 }
 
 let measure; //the measure that the user selected. 1: timer or 2: words
@@ -126,8 +159,8 @@ function selectMeasures(id) {
         document.getElementById('words-options').style.display = 'none';
         durationDisplay.innerHTML = timeMeasureDuration;
     }
-    measures.classList.toggle('selected');
-    otherMeasures.classList.toggle('selected');
+    toggleClass(measures, 'selected');
+    toggleClass(otherMeasures, 'selected');
     generateText();
 }
 
@@ -159,11 +192,12 @@ function selectDurations(measure, id) {
         return;
     }
     allDurationsIDs.forEach(function (x) {
-        if (document.getElementById(x).classList.contains('selected')) {
-            document.getElementById(x).classList.toggle('selected');
+        const currentEl = document.getElementById(x);
+        if (currentEl.classList.contains('selected')) {
+            toggleClass(currentEl, 'selected');
         }
         if (x === id) {
-            document.getElementById(x).classList.toggle('selected');
+            toggleClass(currentEl, 'selected');
             switch (measure) {
                 case 1:
                     timeMeasureDuration = durations[allDurationsIDs.indexOf(x)];
@@ -178,8 +212,12 @@ function selectDurations(measure, id) {
     generateText();
 }
 
-const lineHTML = document.getElementById('line');
+const lineHTML = document.getElementById('line'); //the line element in HTML
 
+/**
+ * Generate the text pn the screen base on the measure value, 1 (timer option) or 2 (word options)
+ * 
+ */
 function generateText() {
     lineHTML.innerHTML = '';
     correctinputKey = [];
@@ -196,6 +234,19 @@ function generateText() {
     addClass(document.querySelector('.characters-wrapper'), 'current');
 }
 
+/**
+ * Generate the amount of text from the Character.js base on the amount input (integer).
+ * <div class="characters-wrapper">
+ *      <div class="character-pronouciation">
+ *          ji6
+ *      </div>
+ *      <div class="character">
+ *          義
+ *      </div>
+ * </div>
+ * @param {*} amount 
+ *      input amount of character should generate.
+ */
 function generateTextAmount(amount) {
     for (var i = 0; i < amount; i++) {
         const randomIndex = Math.floor(Math.random() * Characters.Characters.length);
@@ -227,16 +278,6 @@ function generateTextAmount(amount) {
     }
 }
 
-function addClass(el, name) {
-    el.className += ' ' + name;
-}
-
-function removeClass(el, name) {
-    el.classList.remove(name);
-}
-
-//backSpace index subtraction will be a pain.
-
 const typeDetectionZone = document.getElementById('typing-detection-zone');
 typeDetectionZone.addEventListener('keyup', typing => {
     const key = typing.key;
@@ -246,9 +287,7 @@ typeDetectionZone.addEventListener('keyup', typing => {
     const isSpace = key === ' ';
 
     if (isLetter) {
-        if (key === expect) {
-            indexOfCorrectinputKey++;
-        } else {
+        if (key !== expect) {
             addClass(currentCharacter, 'incorrect');
         }
     }
@@ -256,17 +295,16 @@ typeDetectionZone.addEventListener('keyup', typing => {
     if (isSpace) {
         if (expect === ' ') {
             addClass(currentCharacter, 'correct');
-            indexOfCorrectinputKey++;
         } else {
             addClass(currentCharacter, 'incorrect');
             while (correctinputKey[indexOfCorrectinputKey] !== ' ') {
                 indexOfCorrectinputKey++;
             }
-            indexOfCorrectinputKey++;
         }
         removeClass(currentCharacter, 'current');
         addClass(currentCharacter.nextSibling, 'current');
     }
+    indexOfCorrectinputKey++;
     console.log(key, expect);
 });
 
