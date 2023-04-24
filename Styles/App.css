@@ -400,15 +400,10 @@ img {
     z-index: 1;
 }
 
-.characters-wrapper.current {
-    opacity: 1;
-}
-
 @keyframes blick {
-
     0%,
     100% {
-        border-color: var(--color-secondary);
+        border-color: var(--color-ascent);
     }
 
     50% {
@@ -427,8 +422,7 @@ img {
 
 .characters-wrapper.correct {
     opacity: 1;
-    color: var(--color-ascent-compliment);
-    text-decoration: underline;
+    color: var(--color-secondary);
 }
 
 .characters-wrapper.incorrect {

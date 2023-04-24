@@ -235,6 +235,8 @@ function removeClass(el, name) {
     el.classList.remove(name);
 }
 
+//backSpace index subtraction will be a pain.
+
 const typeDetectionZone = document.getElementById('typing-detection-zone');
 typeDetectionZone.addEventListener('keyup', typing => {
     const key = typing.key;
@@ -242,7 +244,7 @@ typeDetectionZone.addEventListener('keyup', typing => {
     const currentCharacter = document.querySelector('.characters-wrapper.current');
     const isLetter = key.length === 1 && key !== ' ';
     const isSpace = key === ' ';
-    
+
     if (isLetter) {
         if (key === expect) {
             indexOfCorrectinputKey++;
