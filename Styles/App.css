@@ -354,7 +354,7 @@ img {
 
 .full-typing-area-wrapper {
     font-size: 1.8em;
-    height: 170px;
+    height: 175px;
     overflow: hidden;
     padding: 0 64px 0 64px;
     position: relative;
@@ -384,7 +384,7 @@ img {
     flex-direction: row;
     flex-wrap: wrap;
     gap: 6px;
-    filter: blur(6px);
+    filter: blur(3px);
     transition: opacity .1s ease;
 }
 
@@ -401,6 +401,7 @@ img {
 }
 
 @keyframes blick {
+
     0%,
     100% {
         border-color: var(--color-ascent);
@@ -428,6 +429,9 @@ img {
 .characters-wrapper.incorrect {
     opacity: 1;
     color: var(--color-ascent);
+}
+
+.characters-wrapper.incorrect>.character {
     text-decoration: underline;
 }
 
@@ -445,30 +449,6 @@ img {
     min-height: 25px;
 }
 
-.restart-button-wrapper {
-    position: relative;
-}
-
-.restart-button-wrapper::after {
-    content: 'restart test';
-    text-align: center;
-    position: absolute;
-    top: 100%;
-    transform: translateY(-50%) scaleY(0);
-    opacity: 0;
-    background-color: var(--color-secondary);
-    color: var(--color-primary);
-    border-radius: 6px;
-    margin-top: 10px;
-    width: 90px;
-    transition: opacity .24s ease, transform .24s ease;
-}
-
-.restart-button-wrapper:hover::after {
-    opacity: 1;
-    transform: translateY(-25%) scaleY(1)
-}
-
 .restart-test-button {
     display: flex;
     justify-content: center;
@@ -483,6 +463,28 @@ img {
     outline: none;
     border-radius: 6px;
     transition: background-color .24s ease;
+}
+
+.restart-test-button::after {
+    content: 'Restart Test';
+    text-align: center;
+    position: absolute;
+    top: 100%;
+    transform: translateY(-50%) scaleY(0);
+    opacity: 0;
+    background-color: var(--color-secondary);
+    color: var(--color-primary);
+    border-radius: 6px;
+    margin-top: 10px;
+    width: 90px;
+    min-height: min-content;
+    transition: opacity .24s ease, transform .24s ease;
+}
+
+.restart-test-button:focus::after,
+.restart-test-button:hover::after {
+    opacity: 1;
+    transform: translateY(-25%) scaleY(1);
 }
 
 .restart-test-button img {
