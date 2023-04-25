@@ -259,17 +259,17 @@ function generateTextAmount(amount) {
         let pronouciationAssist = '';
         if (initialStatus) {
             pronouciationAssist += Characters.Characters[randomIndex]['Initial'];
-            Characters.Characters[randomIndex]['Initial'].split('').forEach(i => correctinputKey.push(i));
         }
         if (vowelStatus) {
             pronouciationAssist += Characters.Characters[randomIndex]['Vowel'];
-            Characters.Characters[randomIndex]['Vowel'].split('').forEach(i => correctinputKey.push(i));
         }
         if (toneStatus) {
             pronouciationAssist += Characters.Characters[randomIndex]['Tone'];
-            Characters.Characters[randomIndex]['Tone'].toString().split('').forEach(i => correctinputKey.push(i));
         }
-        pronouciationDiv.innerHTML = '' + pronouciationAssist;
+        Characters.Characters[randomIndex]['Initial'].split('').forEach(i => correctinputKey.push(i));
+        Characters.Characters[randomIndex]['Vowel'].split('').forEach(i => correctinputKey.push(i));
+        Characters.Characters[randomIndex]['Tone'].toString().split('').forEach(i => correctinputKey.push(i));
+        pronouciationDiv.textContent = '' + pronouciationAssist;
         const characterDiv = document.createElement('div');
         characterDiv.className = 'character';
         wrapperDiv.appendChild(characterDiv);
