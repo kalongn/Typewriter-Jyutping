@@ -286,12 +286,21 @@ typeDetectionZone.addEventListener('keyup', typing => {
     const isLetter = key.length === 1 && key !== ' ';
     const isSpace = key === ' ';
 
+    //Game has not started yet.
+    if (!isLetter & !isSpace) {
+        return;
+    }
+
+    //game started mechanics
+
+    //letters
     if (isLetter) {
         if (key !== expect) {
             addClass(currentCharacter, 'incorrect');
         }
     }
 
+    //handling spaces
     if (isSpace) {
         if (expect === ' ') {
             addClass(currentCharacter, 'correct');
@@ -304,6 +313,8 @@ typeDetectionZone.addEventListener('keyup', typing => {
         removeClass(currentCharacter, 'current');
         addClass(currentCharacter.nextSibling, 'current');
     }
+
+    //increment the index of the array.
     indexOfCorrectinputKey++;
     console.log(key, expect);
 });
