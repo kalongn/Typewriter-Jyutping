@@ -232,25 +232,6 @@ img {
     }
 }
 
-/*.icon-wrapper::before {
-    content: '';
-    position: absolute;
-    left: 50%;
-    bottom: -6px;
-    height: 4px;
-    width: 0;
-    background-color: var(--color-ascent);
-    border-radius: 3px;
-    transform: translateX(-50%);
-    transition: width 0.3s ease-in-out, transform 0.3s ease-in-out;
-}
-
-.icon-wrapper:hover::before {
-    width: 100%;
-    transform: translateX(-50%) scaleX(1);
-}*/
-
-
 /* Center of Main Page stuff */
 .center-cotent-wrapper {
     display: flex;
@@ -413,8 +394,8 @@ img {
 }
 
 .current>.character {
-    border: none;
     animation: blick .6s infinite;
+    transition: border .1s ease;
 }
 
 .center-content-items:focus .current>.character {
