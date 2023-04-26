@@ -1,3 +1,4 @@
+'use strict';
 /**
  * set alias to The other JS which contains the actual JSON variable.
  */
@@ -6,7 +7,7 @@ const Characters = AllDatas;
 /**
  * typing answer
  */
-let correctinputKey, indexOfCorrectinputKey;
+let correctinputKey, indexOfCorrectinputKey, currentCharacterInputKey;
 
 /**
  * This function will be call when loading the webpage.
@@ -20,6 +21,7 @@ function startWeb() {
     vowelStatus = true;
     toneStatus = true;
     correctinputKey = [];
+    currentCharacterInputKey = [];
     indexOfCorrectinputKey = 0;
     startGame();
 }
@@ -285,24 +287,65 @@ typeDetectionZone.addEventListener('keyup', typing => {
     const currentCharacter = document.querySelector('.characters-wrapper.current');
     const isLetter = key.length === 1 && key !== ' ';
     const isSpace = key === ' ';
+    const isBackSpace = key === 'Backspace';
 
-    //Game has not started yet.
-    if (!isLetter & !isSpace) {
+    //console.log(key, expect);
+
+    //Ignored invalid input
+    if (!isLetter & !isSpace & !isBackSpace) {
         return;
     }
 
     //game started mechanics
+
+    if (isBackSpace) {
+        //if this is the first character
+        if (indexOfCorrectinputKey == 0) {
+            return;
+        }
+        //if the character is a single character
+        // Need to think about how backspacing detect the "wrong character"
+        /*
+            Can use like a stack implement by array.
+                if detect a wrong character, stack stores the input immediately
+                    backsapce pop sthe stack and decremenet the index by one 
+                if the item poped == wrong character, remove current character incorrect class. 
+        */
+        if (!(correctinputKey[indexOfCorrectinputKey - 1] === ' ')) {
+            indexOfCorrectinputKey--;
+            if (correctinputKey[indexOfCorrectinputKey] !== currentCharacterInputKey.pop()) {
+                removeClass(currentCharacter, 'incorrect');
+            }
+            return;
+        }
+        //if the previous character is correxct, backspae should do nothing.
+        if (currentCharacter.previousSibling.classList.contains('correct')) {
+            return;
+        }
+
+        indexOfCorrectinputKey--;
+        removeClass(currentCharacter, 'current');
+        addClass(currentCharacter.previousSibling, 'current');
+        removeClass(currentCharacter.previousSibling, 'incorrect');
+        while (indexOfCorrectinputKey !== 0 && correctinputKey[indexOfCorrectinputKey - 1] !== ' ') {
+            indexOfCorrectinputKey--;
+        }
+        return;
+    }
 
     //letters
     if (isLetter) {
         if (key !== expect) {
             addClass(currentCharacter, 'incorrect');
         }
+        currentCharacterInputKey.push(key);
+        indexOfCorrectinputKey++;
+        return;
     }
 
     //handling spaces
     if (isSpace) {
-        if (expect === ' ') {
+        if (expect === ' ' && !currentCharacter.classList.contains('incorrect')) {
             addClass(currentCharacter, 'correct');
         } else {
             addClass(currentCharacter, 'incorrect');
@@ -310,13 +353,12 @@ typeDetectionZone.addEventListener('keyup', typing => {
                 indexOfCorrectinputKey++;
             }
         }
+        currentCharacterInputKey = [];
         removeClass(currentCharacter, 'current');
         addClass(currentCharacter.nextSibling, 'current');
+        indexOfCorrectinputKey++;
+        return;
     }
-
-    //increment the index of the array.
-    indexOfCorrectinputKey++;
-    console.log(key, expect);
 });
 
 function startGame() {
