@@ -358,6 +358,7 @@ img {
     position: relative;
     display: flex;
     justify-content: center;
+    overflow: hidden;
 }
 
 .line {
@@ -595,5 +596,9 @@ key {
 
     .keybind-area-wrapper {
         display: none;
+    }
+
+    .focus-wrapper {
+        font-size: 2rem;
     }
 }

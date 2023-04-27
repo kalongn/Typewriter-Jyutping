@@ -9,6 +9,7 @@ const Characters = AllDatas;
  */
 let correctinputKey, indexOfCorrectinputKey, currentCharacterInputKey;
 
+let topMost;
 /**
  * This function will be call when loading the webpage.
  */
@@ -103,7 +104,7 @@ const restartButton = document.getElementById("restart-test-button");
  * To be implemented restartButton Functions, should be call once actiavted by keybind or clicked.
  */
 function restartButtonFunction() {
-    generateText();
+    startGame();
 }
 
 let initialStatus, vowelStatus, toneStatus; //True = on, False = off
@@ -234,6 +235,8 @@ function generateText() {
     }
     document.getElementById('typing-detection-zone').focus();
     addClass(document.querySelector('.characters-wrapper'), 'current');
+
+    topMost = lineHTML.getBoundingClientRect().top;
 }
 
 /**
@@ -281,6 +284,7 @@ function generateTextAmount(amount) {
 }
 
 const typeDetectionZone = document.getElementById('typing-detection-zone');
+const focusItem = document.getElementById('focus-wrapper');
 typeDetectionZone.addEventListener('keyup', typing => {
     const key = typing.key;
     const expect = correctinputKey[indexOfCorrectinputKey];
@@ -296,7 +300,38 @@ typeDetectionZone.addEventListener('keyup', typing => {
         return;
     }
 
-    //game started mechanics
+    //letters
+    if (isLetter) {
+        if (key !== expect) {
+            addClass(currentCharacter, 'incorrect');
+        }
+        currentCharacterInputKey.push(key);
+        indexOfCorrectinputKey++;
+    }
+
+    //handling spaces
+    if (isSpace) {
+        if (expect === ' ' && !currentCharacter.classList.contains('incorrect')) {
+            addClass(currentCharacter, 'correct');
+        } else {
+            addClass(currentCharacter, 'incorrect');
+            while (correctinputKey[indexOfCorrectinputKey] !== ' ') {
+                indexOfCorrectinputKey++;
+            }
+        }
+        currentCharacterInputKey = [];
+        removeClass(currentCharacter, 'current');
+        addClass(currentCharacter.nextSibling, 'current');
+        indexOfCorrectinputKey++;
+    }
+
+    //Adjust scrolling down effect.
+    if (isLetter || isSpace) {
+        if (currentCharacter.getBoundingClientRect().top > topMost + 70) {
+            const margin = parseInt(lineHTML.style.marginTop || '0px');
+            lineHTML.style.marginTop = (margin - 71) + 'px';
+        }
+    }
 
     if (isBackSpace) {
         //if this is the first character
@@ -330,37 +365,21 @@ typeDetectionZone.addEventListener('keyup', typing => {
         while (indexOfCorrectinputKey !== 0 && correctinputKey[indexOfCorrectinputKey - 1] !== ' ') {
             indexOfCorrectinputKey--;
         }
-        return;
-    }
 
-    //letters
-    if (isLetter) {
-        if (key !== expect) {
-            addClass(currentCharacter, 'incorrect');
-        }
-        currentCharacterInputKey.push(key);
-        indexOfCorrectinputKey++;
-        return;
-    }
-
-    //handling spaces
-    if (isSpace) {
-        if (expect === ' ' && !currentCharacter.classList.contains('incorrect')) {
-            addClass(currentCharacter, 'correct');
-        } else {
-            addClass(currentCharacter, 'incorrect');
-            while (correctinputKey[indexOfCorrectinputKey] !== ' ') {
-                indexOfCorrectinputKey++;
+        //Scroll backup stuff.
+        const leftMost = lineHTML.getBoundingClientRect().left;
+        if (currentCharacter.getBoundingClientRect().top <= topMost + 70 && leftMost + 20 >= currentCharacter.getBoundingClientRect().left) {
+            const margin = parseInt(lineHTML.style.marginTop || '0px');
+            console.log(margin);
+            if (margin >= 0) {
+                return;
             }
+            lineHTML.style.marginTop = (margin + 71) + 'px';
         }
-        currentCharacterInputKey = [];
-        removeClass(currentCharacter, 'current');
-        addClass(currentCharacter.nextSibling, 'current');
-        indexOfCorrectinputKey++;
-        return;
     }
 });
 
 function startGame() {
+    lineHTML.style.marginTop = '0px';
     generateText();
 }
