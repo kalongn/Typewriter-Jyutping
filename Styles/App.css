@@ -367,11 +367,13 @@ img {
     flex-wrap: wrap;
     gap: 6px;
     filter: blur(3px);
-    transition: opacity .1s ease;
+    transition: margin .3s ease-in-out;
 }
 
 .line .characters-wrapper {
     opacity: .5;
+    transition: opacity .2s ease-in-out;
+    transition: color .2s ease-in-out;
 }
 
 .focus-wrapper {

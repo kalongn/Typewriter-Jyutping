@@ -24,6 +24,7 @@ function startWeb() {
     correctinputKey = [];
     currentCharacterInputKey = [];
     indexOfCorrectinputKey = 0;
+    topMost = 0;
     startGame();
 }
 
@@ -227,7 +228,7 @@ function generateText() {
     indexOfCorrectinputKey = 0;
     switch (measure) {
         case 1:
-            generateTextAmount(60);
+            generateTextAmount(150);
             break;
         default:
             generateTextAmount(wordsMeasureDuration);
@@ -235,8 +236,6 @@ function generateText() {
     }
     document.getElementById('typing-detection-zone').focus();
     addClass(document.querySelector('.characters-wrapper'), 'current');
-
-    topMost = lineHTML.getBoundingClientRect().top;
 }
 
 /**
@@ -285,7 +284,11 @@ function generateTextAmount(amount) {
 
 const typeDetectionZone = document.getElementById('typing-detection-zone');
 const focusItem = document.getElementById('focus-wrapper');
+
 typeDetectionZone.addEventListener('keyup', typing => {
+    if (topMost === 0) {
+        topMost = lineHTML.getBoundingClientRect().top;
+    }
     const key = typing.key;
     const expect = correctinputKey[indexOfCorrectinputKey];
     const currentCharacter = document.querySelector('.characters-wrapper.current');
@@ -353,11 +356,12 @@ typeDetectionZone.addEventListener('keyup', typing => {
             }
             return;
         }
-        //if the previous character is correxct, backspae should do nothing.
+        //if the previous character is correct, backspae should do nothing.
         if (currentCharacter.previousSibling.classList.contains('correct')) {
             return;
         }
 
+        //if the previous character is wrong, this will allows to backtrack go back and delete previous character.
         indexOfCorrectinputKey--;
         removeClass(currentCharacter, 'current');
         addClass(currentCharacter.previousSibling, 'current');
@@ -366,11 +370,10 @@ typeDetectionZone.addEventListener('keyup', typing => {
             indexOfCorrectinputKey--;
         }
 
-        //Scroll backup stuff.
+        //Adjust scroll backup stuff.
         const leftMost = lineHTML.getBoundingClientRect().left;
         if (currentCharacter.getBoundingClientRect().top <= topMost + 70 && leftMost + 20 >= currentCharacter.getBoundingClientRect().left) {
             const margin = parseInt(lineHTML.style.marginTop || '0px');
-            console.log(margin);
             if (margin >= 0) {
                 return;
             }
@@ -381,5 +384,5 @@ typeDetectionZone.addEventListener('keyup', typing => {
 
 function startGame() {
     lineHTML.style.marginTop = '0px';
-    generateText();
+    generateText(); //this updated the lineHTML to have content.
 }
