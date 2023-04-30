@@ -358,7 +358,9 @@ img {
     position: relative;
     display: flex;
     justify-content: center;
+    align-items: first baseline;
     overflow: hidden;
+    height: 175px;
 }
 
 .line {
