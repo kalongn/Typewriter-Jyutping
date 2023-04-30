@@ -546,6 +546,9 @@ key {
     .full-typing-area-wrapper {
         min-width: 800px;
     }
+    .center-content-items {
+        gap: 6rem;
+    }
 }
 
 /*Tablet size or smaller laptop */

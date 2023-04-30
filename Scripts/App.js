@@ -283,8 +283,8 @@ function generateTextAmount(amount) {
 }
 
 const typeDetectionZone = document.getElementById('typing-detection-zone');
-const focusItem = document.getElementById('focus-wrapper');
 
+//This following codes are for the typing
 typeDetectionZone.addEventListener('keyup', typing => {
     if (topMost === 0) {
         topMost = lineHTML.getBoundingClientRect().top;
@@ -382,6 +382,9 @@ typeDetectionZone.addEventListener('keyup', typing => {
     }
 });
 
+/**
+ * Starts the game function.
+ */
 function startGame() {
     lineHTML.style.marginTop = '0px';
     generateText(); //this updated the lineHTML to have content.
