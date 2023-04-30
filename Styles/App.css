@@ -354,13 +354,27 @@ img {
     display: none;
 }
 
+.main-typing-area-wrapper.over #focus-wrapper {
+    display: none;
+}
+
+.main-typing-area-wrapper.over #line {
+    filter: blur(0px);
+}
+
+.main-typing-area-wrapper.over .current>.character,
+.center-content-items:focus .main-typing-area-wrapper.over .current>.character{
+    animation: none;
+    border: none;
+}
+
 .main-typing-area-wrapper {
     position: relative;
     display: flex;
     justify-content: center;
     align-items: first baseline;
     overflow: hidden;
-    height: 175px;
+    min-height: 175px;
 }
 
 .line {
@@ -491,6 +505,27 @@ img {
 
 .restart-test-button:active img {
     opacity: .45;
+}
+
+.stat-wrapper {
+    display: none;
+}
+
+.stat-wrapper.appear {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 3rem;
+    font-size: 3rem;
+}
+
+.options-bar-wrapper.disappear {
+    display: none;
+}
+
+.full-typing-area-wrapper.disappear {
+    display: none;
 }
 
 .keybind-area-wrapper {

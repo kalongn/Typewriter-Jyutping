@@ -47,6 +47,19 @@
         </header>
         <main class="center-cotent-wrapper">
             <div id="typing-detection-zone" class="center-content-items" tabindex="0">
+                <div class="stat-wrapper" id="stat-wrapper">
+                    <div class="wpm-display" id="wpm-display">
+                        CPM: <span class="wpm" id="wpm">
+
+                        </span>
+                    </div>
+                    <div class="accuracy-display" id="accuracy-display">
+                        Accuracy: <span class="accuracy" id="accuracy">
+
+                        </span>
+                        %
+                    </div>
+                </div>
                 <div id="options-bar" class="options-bar-wrapper unselectable">
                     <div class="options-flex-wrapper">
                         <a onclick="selectDifficulties(this.id)" id="initial" class="icon-link-wrapper selected">
@@ -134,7 +147,7 @@
                     <div id="duration-counter" class="duration-counter">
                         15
                     </div>
-                    <div class="main-typing-area-wrapper">
+                    <div id="main-typing-area-wrapper" class="main-typing-area-wrapper">
                         <div class="focus-wrapper" id="focus-wrapper">
                             <div>
                                 Click here to focus.

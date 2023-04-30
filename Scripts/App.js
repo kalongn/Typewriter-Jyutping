@@ -10,6 +10,11 @@ const Characters = AllDatas;
 let correctinputKey, indexOfCorrectinputKey, currentCharacterInputKey;
 
 let topMost;
+
+let mistakesCount, currentCharacterIndex, amountOfCorrectWords, amountOfKeyStrokes;
+
+window.timer = null;
+window.gameStarted = null;
 /**
  * This function will be call when loading the webpage.
  */
@@ -25,6 +30,10 @@ function startWeb() {
     currentCharacterInputKey = [];
     indexOfCorrectinputKey = 0;
     topMost = 0;
+    mistakesCount = 0;
+    currentCharacterIndex = 0;
+    amountOfCorrectWords = 0;
+    amountOfKeyStrokes = 0;
     startGame();
 }
 
@@ -105,6 +114,7 @@ const restartButton = document.getElementById("restart-test-button");
  * To be implemented restartButton Functions, should be call once actiavted by keybind or clicked.
  */
 function restartButtonFunction() {
+    clearInterval(window.timer);
     startGame();
 }
 
@@ -296,10 +306,32 @@ typeDetectionZone.addEventListener('keyup', typing => {
     const isSpace = key === ' ';
     const isBackSpace = key === 'Backspace';
 
+    if (document.querySelector('.main-typing-area-wrapper.over')) {
+        return;
+    }
+
+    amountOfKeyStrokes++;
+
     //console.log(key, expect);
 
+    if (!window.timer && isLetter) {
+        window.timer = setInterval(() => {
+            if (!window.gameStarted) {
+                window.gameStarted = (new Date()).getTime();
+            }
+            const currentTime = (new Date()).getTime();
+            const msPassed = currentTime - window.gameStarted;
+            const sPassed = Math.round(msPassed / 1000);
+            const sLeft = timeMeasureDuration - sPassed;
+            durationDisplay.innerHTML = sLeft;
+            if (sLeft <= 0) {
+                gameOver();
+            }
+        }, 1000)
+    }
+
     //Ignored invalid input
-    if (!isLetter & !isSpace & !isBackSpace) {
+    if (!isLetter && !isSpace && !isBackSpace) {
         return;
     }
 
@@ -307,25 +339,33 @@ typeDetectionZone.addEventListener('keyup', typing => {
     if (isLetter) {
         if (key !== expect) {
             addClass(currentCharacter, 'incorrect');
+            mistakesCount++;
+        } else {
+            indexOfCorrectinputKey++;
         }
         currentCharacterInputKey.push(key);
-        indexOfCorrectinputKey++;
     }
 
     //handling spaces
     if (isSpace) {
+        if (!window.gameStarted) {
+            return;
+        }
         if (expect === ' ' && !currentCharacter.classList.contains('incorrect')) {
             addClass(currentCharacter, 'correct');
+            amountOfCorrectWords++;
         } else {
             addClass(currentCharacter, 'incorrect');
             while (correctinputKey[indexOfCorrectinputKey] !== ' ') {
                 indexOfCorrectinputKey++;
             }
+            mistakesCount++;
         }
         currentCharacterInputKey = [];
         removeClass(currentCharacter, 'current');
         addClass(currentCharacter.nextSibling, 'current');
         indexOfCorrectinputKey++;
+        currentCharacterIndex++;
     }
 
     //Adjust scrolling down effect.
@@ -369,6 +409,7 @@ typeDetectionZone.addEventListener('keyup', typing => {
         while (indexOfCorrectinputKey !== 0 && correctinputKey[indexOfCorrectinputKey - 1] !== ' ') {
             indexOfCorrectinputKey--;
         }
+        currentCharacterIndex--;
 
         //Adjust scroll backup stuff.
         const leftMost = lineHTML.getBoundingClientRect().left;
@@ -387,5 +428,41 @@ typeDetectionZone.addEventListener('keyup', typing => {
  */
 function startGame() {
     lineHTML.style.marginTop = '0px';
+    window.timer = null;
+    window.gameStarted = null;
+    durationDisplay.innerHTML = timeMeasureDuration;
+    mistakesCount = 0;
+    currentCharacterIndex = 0;
+    amountOfCorrectWords = 0;
+    amountOfKeyStrokes = 0;
+    removeClass(mainTypingArea, 'over');
+    removeClass(fullTypingArea, 'disappear');
+    removeClass(optionBarArea, 'disappear');
+    removeClass(statArea, 'appear');
     generateText(); //this updated the lineHTML to have content.
+}
+
+const mainTypingArea = document.getElementById('main-typing-area-wrapper');
+const fullTypingArea = document.getElementById('full-typing-area-wrapper');
+const optionBarArea = document.getElementById('options-bar');
+const statArea = document.getElementById('stat-wrapper');
+const wpmDisplay = document.getElementById('wpm');
+const accuracyDisplay = document.getElementById('accuracy');
+
+function gameOver() {
+    clearInterval(window.timer);
+    addClass(mainTypingArea, 'over');
+    addClass(fullTypingArea, 'disappear');
+    addClass(optionBarArea, 'disappear');
+    addClass(statArea, 'appear');
+    wpmDisplay.innerHTML = getWPM();
+    accuracyDisplay.innerHTML = getAccuracy();
+}
+
+function getWPM() {
+    return (amountOfCorrectWords / timeMeasureDuration).toFixed(2);
+}
+
+function getAccuracy() {
+    return ((amountOfKeyStrokes - mistakesCount) / amountOfKeyStrokes).toFixed(2)*100;
 }
