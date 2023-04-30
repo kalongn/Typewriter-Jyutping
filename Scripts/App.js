@@ -460,7 +460,7 @@ function gameOver() {
 }
 
 function getWPM() {
-    return (amountOfCorrectWords / timeMeasureDuration).toFixed(2);
+    return (amountOfCorrectWords / timeMeasureDuration).toFixed(2)*60;
 }
 
 function getAccuracy() {
