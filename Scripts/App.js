@@ -312,7 +312,7 @@ typeDetectionZone.addEventListener('keyup', typing => {
 
     amountOfKeyStrokes++;
 
-    //console.log(key, expect);
+    // console.log(key, expect);
 
     if (!window.timer && isLetter) {
         window.timer = setInterval(() => {
@@ -348,7 +348,7 @@ typeDetectionZone.addEventListener('keyup', typing => {
 
     //handling spaces
     if (isSpace) {
-        if (!window.gameStarted) {
+        if(indexOfCorrectinputKey === 0) {
             return;
         }
         if (expect === ' ' && !currentCharacter.classList.contains('incorrect')) {
