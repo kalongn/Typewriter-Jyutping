@@ -132,7 +132,8 @@ img {
     height: 100%;
     width: 100%;
     grid-auto-flow: row;
-    grid-template-rows: 1fr 5fr 1fr;
+    grid-template-rows: 1fr auto 1fr;
+    grid-gap: 3rem;
 }
 
 /* Nav Bar Stuff */
@@ -363,7 +364,7 @@ img {
 }
 
 .main-typing-area-wrapper.over .current>.character,
-.center-content-items:focus .main-typing-area-wrapper.over .current>.character{
+.center-content-items:focus .main-typing-area-wrapper.over .current>.character {
     animation: none;
     border: none;
 }
@@ -581,6 +582,7 @@ key {
     .full-typing-area-wrapper {
         min-width: 800px;
     }
+
     .center-content-items {
         gap: 6rem;
     }
