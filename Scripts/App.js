@@ -165,7 +165,7 @@ function selectMeasures(id) {
         otherMeasures = document.getElementById('timer')
         document.getElementById('words-options').style.display = 'flex';
         document.getElementById('timer-options').style.display = 'none';
-        durationDisplay.innerHTML = wordsMeasureDuration;
+        durationDisplay.innerHTML = "0 / " + wordsMeasureDuration;
     } else {
         measure = 1;
         otherMeasures = document.getElementById('words')
@@ -215,12 +215,13 @@ function selectDurations(measure, id) {
             switch (measure) {
                 case 1:
                     timeMeasureDuration = durations[allDurationsIDs.indexOf(x)];
+                    durationDisplay.innerHTML = timeMeasureDuration;
                     break;
                 default:
                     wordsMeasureDuration = durations[allDurationsIDs.indexOf(x)];
+                    durationDisplay.innerHTML = "0 / " + wordsMeasureDuration;
                     break;
             }
-            durationDisplay.innerHTML = durations[allDurationsIDs.indexOf(x)];
         }
     })
     generateText();
@@ -293,6 +294,8 @@ function generateTextAmount(amount) {
 }
 
 const typeDetectionZone = document.getElementById('typing-detection-zone');
+let remainsWord = wordsMeasureDuration;
+let timePassed = 0;
 
 //This following codes are for the typing
 typeDetectionZone.addEventListener('keyup', typing => {
@@ -313,22 +316,42 @@ typeDetectionZone.addEventListener('keyup', typing => {
     amountOfKeyStrokes++;
 
     // console.log(key, expect);
-
-    if (!window.timer && isLetter) {
-        window.timer = setInterval(() => {
-            if (!window.gameStarted) {
-                window.gameStarted = (new Date()).getTime();
+    switch (measure) {
+        case 1:
+            if (!window.timer && isLetter) {
+                window.timer = setInterval(() => {
+                    if (!window.gameStarted) {
+                        window.gameStarted = (new Date()).getTime();
+                    }
+                    const currentTime = (new Date()).getTime();
+                    const msPassed = currentTime - window.gameStarted;
+                    const sPassed = Math.round(msPassed / 1000);
+                    const sLeft = timeMeasureDuration - sPassed;
+                    durationDisplay.innerHTML = sLeft;
+                    if (sLeft <= 0) {
+                        gameOver();
+                    }
+                }, 1000)
             }
-            const currentTime = (new Date()).getTime();
-            const msPassed = currentTime - window.gameStarted;
-            const sPassed = Math.round(msPassed / 1000);
-            const sLeft = timeMeasureDuration - sPassed;
-            durationDisplay.innerHTML = sLeft;
-            if (sLeft <= 0) {
-                gameOver();
+            break;
+        default:
+            if (!window.timer && isLetter) {
+                window.timer = setInterval(() => {
+                    if (!window.gameStarted) {
+                        window.gameStarted = (new Date()).getTime();
+                    }
+                    if (remainsWord <= 0) {
+                        const currentTime = (new Date()).getTime();
+                        const msPassed = currentTime - window.gameStarted;
+                        timePassed = Math.round(msPassed / 1000);
+                        gameOver();
+                    }
+                    durationDisplay.innerHTML = "" + (wordsMeasureDuration - remainsWord) + " / " + wordsMeasureDuration;
+                }, 1000)
             }
-        }, 1000)
+            break;
     }
+    console.log(remainsWord);
 
     //Ignored invalid input
     if (!isLetter && !isSpace && !isBackSpace) {
@@ -348,7 +371,7 @@ typeDetectionZone.addEventListener('keyup', typing => {
 
     //handling spaces
     if (isSpace) {
-        if(indexOfCorrectinputKey === 0) {
+        if (indexOfCorrectinputKey === 0) {
             return;
         }
         if (expect === ' ' && !currentCharacter.classList.contains('incorrect')) {
@@ -363,9 +386,15 @@ typeDetectionZone.addEventListener('keyup', typing => {
         }
         currentCharacterInputKey = [];
         removeClass(currentCharacter, 'current');
-        addClass(currentCharacter.nextSibling, 'current');
+        if (currentCharacter.nextSibling !== null) {
+            addClass(currentCharacter.nextSibling, 'current');
+        }
         indexOfCorrectinputKey++;
         currentCharacterIndex++;
+        if (measure !== 1) {
+            remainsWord--;
+            durationDisplay.innerHTML = "" + (wordsMeasureDuration - remainsWord) + " / " + wordsMeasureDuration;
+        }
     }
 
     //Adjust scrolling down effect.
@@ -410,6 +439,10 @@ typeDetectionZone.addEventListener('keyup', typing => {
             indexOfCorrectinputKey--;
         }
         currentCharacterIndex--;
+        if (measure !== 1) {
+            remainsWord++;
+            durationDisplay.innerHTML = "" + (wordsMeasureDuration - remainsWord) + " / " + wordsMeasureDuration;
+        }
 
         //Adjust scroll backup stuff.
         const leftMost = lineHTML.getBoundingClientRect().left;
@@ -430,11 +463,19 @@ function startGame() {
     lineHTML.style.marginTop = '0px';
     window.timer = null;
     window.gameStarted = null;
-    durationDisplay.innerHTML = timeMeasureDuration;
+    switch (measure) {
+        case 1:
+            durationDisplay.innerHTML = timeMeasureDuration;
+            break;
+        default:
+            durationDisplay.innerHTML = "0" + " / " + wordsMeasureDuration
+    }
     mistakesCount = 0;
     currentCharacterIndex = 0;
     amountOfCorrectWords = 0;
     amountOfKeyStrokes = 0;
+    timePassed = 0;
+    remainsWord = wordsMeasureDuration;
     removeClass(mainTypingArea, 'over');
     removeClass(fullTypingArea, 'disappear');
     removeClass(optionBarArea, 'disappear');
@@ -460,9 +501,16 @@ function gameOver() {
 }
 
 function getWPM() {
-    return (amountOfCorrectWords / timeMeasureDuration).toFixed(2)*60;
+    let result = 0;
+    switch (measure) {
+        case 1:
+            result = (amountOfCorrectWords / timeMeasureDuration).toFixed(2) * 60;
+        default:
+            result = (amountOfCorrectWords / timePassed).toFixed(2) * 60;
+    }
+    return result;
 }
 
 function getAccuracy() {
-    return ((amountOfKeyStrokes - mistakesCount) / amountOfKeyStrokes).toFixed(2)*100;
+    return ((amountOfKeyStrokes - mistakesCount) / amountOfKeyStrokes).toFixed(2) * 100;
 }
