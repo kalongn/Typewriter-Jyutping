@@ -5,17 +5,17 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./Styles/App.css">
+    <link rel="stylesheet" href="../Styles/App.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+HK&display=swap" rel="stylesheet">
-    <link rel="icon" type="png" href="./Img/favicon.png">
+    <link rel="icon" type="png" href="../Img/favicon.png">
     <title>Typewriter jyutping</title>
 </head>
 
 <body onload="startWeb()">
-    <script defer type="text/javascript" src="./Scripts/App.js"></script>
-    <script type="text/javascript" src="./Characters_Datas/Characters.js"></script>
+    <script defer type="text/javascript" src="../Scripts/App.js"></script>
+    <script type="text/javascript" src="../Characters_Datas/Characters.js"></script>
 
     <div id="loading-screen-wrapper" class="loading-screen-wrapper">
         <h1 class="text large-size-text loading-screen-text loading-text-wrapper unselectable">
@@ -29,18 +29,18 @@
     <div id="main-page-wrapper" class="main-page-wrapper animate-bottom text unselectable">
         <header class="nav-bar-wrapper unselectable">
             <a onclick="return false;" class="left-nav-wrapper">
-                <img src="./Img/Logo_Simplified.png" alt="WebPage Logo" class="logo">
+                <img src="../Img/Logo_Simplified.png" alt="WebPage Logo" class="logo">
                 <div class="logo-text text">JyutPing</div>
             </a>
             <div class="right-nav-wrapper">
                 <a href="#" onclick="voidButton()" class="icon-link-wrapper">
-                    <img src="./Img/user_icon.png" srcset="../Img/user_icon.svg" alt="Account" class="icon">
+                    <img src="../Img/user_icon.png" srcset="../Img/user_icon.svg" alt="Account" class="icon">
                 </a>
                 <a href="#" onclick="voidButton()" class="icon-link-wrapper">
-                    <img src="./Img/gear_six_icon.png" srcset="../Img/gear_six_icon.svg" alt="Account" class="icon">
+                    <img src="../Img/gear_six_icon.png" srcset="../Img/gear_six_icon.svg" alt="Account" class="icon">
                 </a>
                 <a onclick="switchThemes()" class="icon-link-wrapper">
-                    <img src="./Img/sun_icon.png" srcset="../Img/sun_icon.svg" alt="Light Mode" class="icon"
+                    <img src="../Img/sun_icon.png" srcset="../Img/sun_icon.svg" alt="Light Mode" class="icon"
                         id="themes">
                 </a>
             </div>
@@ -76,13 +76,13 @@
                     <div class="line-divider"></div>
                     <div class="options-flex-wrapper">
                         <a onclick="selectMeasures(this.id)" id="timer" class="icon-link-wrapper selected">
-                            <img src="./Img/time_icon.png" srcset="./Img/time_icon.svg" alt="timer" class="icon">
+                            <img src="../Img/time_icon.png" srcset="../Img/time_icon.svg" alt="timer" class="icon">
                             <div class="difficulties">
                                 Timer
                             </div>
                         </a>
                         <a onclick="selectMeasures(this.id)" id="words" class="icon-link-wrapper">
-                            <img src="./Img/words_icon.png" srcset="./Img/words_icon.svg" alt="words" class="icon">
+                            <img src="../Img/words_icon.png" srcset="../Img/words_icon.svg" alt="words" class="icon">
                             <div class="difficulties">
                                 Words
                             </div>
@@ -162,7 +162,7 @@
                 </div>
                 <div id="restart-button-wrapper" class="restart-button-wrapper" tabindex="1">
                     <button onclick="restartButtonFunction()" id="restart-test-button" class="restart-test-button">
-                        <img src="./Img/restart_icon.png" srcset="./Img/restart_icon.svg" alt="Restart Test"
+                        <img src="../Img/restart_icon.png" srcset="../Img/restart_icon.svg" alt="Restart Test"
                             class="icon">
                     </button>
                 </div>
@@ -177,44 +177,44 @@
             <div class="left-footer">
                 <a href="mailto:djklsslk@gmail.com" target="_blank" class="icon-link-wrapper">
                     <div class="icon-wrapper footer-item">
-                        <img src="./Img/contact_icon.png" srcset="./Img/contact_icon.svg" alt="Contact the developer"
+                        <img src="../Img/contact_icon.png" srcset="../Img/contact_icon.svg" alt="Contact the developer"
                             class="icon">
                         <div class="footer-icon-text">Contact</div>
                     </div>
                 </a>
                 <a href="https://ko-fi.com/kalongngai" target="_blank" class="icon-link-wrapper">
                     <div class="footer-item">
-                        <img src="./Img/support_icon.png" srcset="./Img/support_icon.svg" alt="Support the developer"
+                        <img src="../Img/support_icon.png" srcset="../Img/support_icon.svg" alt="Support the developer"
                             class="icon">
                         <div class="footer-icon-text">Support</div>
                     </div>
                 </a>
                 <a href="https://github.com/kalongn/Typewriter-Jyutping" target="_blank" class="icon-link-wrapper">
                     <div class="footer-item">
-                        <img src="./Img/github_icon.png" srcset="./Img/github_icon.svg" alt="GitHub for this webpage"
+                        <img src="../Img/github_icon.png" srcset="../Img/github_icon.svg" alt="GitHub for this webpage"
                             class="icon">
                         <div class="footer-icon-text">GitHub</div>
                     </div>
                 </a>
                 <a href="https://twitter.com/Ka_Long_N" target="_blank" class="icon-link-wrapper">
                     <div class="footer-item">
-                        <img src="./Img/twitter_icon.png" srcset="./Img/twitter_icon.svg" alt="developer's twitter"
+                        <img src="../Img/twitter_icon.png" srcset="../Img/twitter_icon.svg" alt="developer's twitter"
                             class="icon">
                         <div class="footer-icon-text">Twitter</div>
                     </div>
                 </a>
             </div>
             <div class="right-footer">
-                <a href="./Pages/Terms.html" target="_blank" class="icon-link-wrapper">
+                <a href="../Pages/Terms.html" target="_blank" class="icon-link-wrapper">
                     <div class="footer-item">
-                        <img src="./Img/terms_icon.png" srcset="./Img/terms_icon.svg" alt="Terms of Service"
+                        <img src="../Img/terms_icon.png" srcset="../Img/terms_icon.svg" alt="Terms of Service"
                             class="icon">
                         <div class="footer-icon-text">Terms</div>
                     </div>
                 </a>
-                <a href="./Pages/Version.html" target="_blank" class="icon-link-wrapper">
+                <a href="../Pages/Version.html" target="_blank" class="icon-link-wrapper">
                     <div class="footer-item">
-                        <img src="./Img/version_icon.png" srcset="./Img/version_icon.svg" alt="Version Note"
+                        <img src="../Img/version_icon.png" srcset="../Img/version_icon.svg" alt="Version Note"
                             class="icon">
                         <div class="footer-icon-text">Version 1.0</div>
                     </div>
