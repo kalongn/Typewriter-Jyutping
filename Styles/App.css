@@ -22,6 +22,7 @@ body {
     width: 100vw;
     background-color: var(--color-primary);
     color: var(--color-secondary);
+    transition: all .1s ease-in-out;
 }
 
 :root {
