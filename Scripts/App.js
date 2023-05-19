@@ -114,8 +114,23 @@ function switchThemes() {
     webpageTheme = !webpageTheme;
 }
 
-//Restart button items
-const restartButton = document.getElementById("restart-test-button");
+/**
+ * Make Tab key sticky to restart button and not jump around.
+ */
+const button = document.getElementById('restart-test-button');
+let tabHeld = false;
+document.addEventListener('keydown', (event) => {
+    if (event.key === 'Tab') {
+        tabHeld = true;
+        event.preventDefault();
+        button.focus();
+    }
+});
+document.addEventListener('keyup', (event) => {
+    if (event.key === 'Tab') {
+        tabHeld = false;
+    }
+});
 
 /**
  * To be implemented restartButton Functions, should be call once actiavted by keybind or clicked.
