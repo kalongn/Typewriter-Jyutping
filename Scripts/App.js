@@ -490,6 +490,9 @@ const statArea = document.getElementById('stat-wrapper');
 const wpmDisplay = document.getElementById('wpm');
 const accuracyDisplay = document.getElementById('accuracy');
 
+/**
+ * End the game.
+ */
 function gameOver() {
     clearInterval(window.timer);
     addClass(mainTypingArea, 'over');
@@ -500,6 +503,10 @@ function gameOver() {
     accuracyDisplay.innerHTML = getAccuracy();
 }
 
+/**
+ * 
+ * @returns the correct WPM base on the user statistics and test method.
+ */
 function getWPM() {
     let result = 0;
     switch (measure) {
@@ -511,6 +518,15 @@ function getWPM() {
     return result;
 }
 
+/**
+ * 
+ * @returns the accuracy of user base on the amount of input and mistakes they've made.
+ */
 function getAccuracy() {
     return ((amountOfKeyStrokes - mistakesCount) / amountOfKeyStrokes).toFixed(2) * 100;
+}
+
+function voidButton() {
+    alert("Features not yet implemented.");
+    return false;
 }
