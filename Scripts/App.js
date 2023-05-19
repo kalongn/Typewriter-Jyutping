@@ -92,8 +92,8 @@ function switchThemes() {
     currentTheme.classList.toggle("swap");
     if (webpageTheme) {
         setTimeout(function () {
-            currentTheme.src = "../Img/moon_icon.png";
-            currentTheme.srcset = "../Img/moon_icon.svg";
+            currentTheme.src = "./Img/moon_icon.png";
+            currentTheme.srcset = "./Img/moon_icon.svg";
             currentTheme.alt = "Dark Mode";
             addClass(body, 'dark');
             localStorage.setItem('isDarkMode', 1);
@@ -101,8 +101,8 @@ function switchThemes() {
 
     } else {
         setTimeout(function () {
-            currentTheme.src = "../Img/sun_icon.png";
-            currentTheme.srcset = "../Img/sun_icon.svg";
+            currentTheme.src = "./Img/sun_icon.png";
+            currentTheme.srcset = "./Img/sun_icon.svg";
             currentTheme.alt = "Light Mode";
             removeClass(body, 'dark');
             localStorage.setItem('isDarkMode', 0);
