@@ -132,8 +132,8 @@ img {
     height: 100%;
     width: 100%;
     grid-auto-flow: row;
-    grid-template-rows: 1fr auto 1fr;
-    grid-gap: 3rem;
+    grid-template-rows: 1fr 5fr 1fr;
+    gap: 3rem;
 }
 
 /* Nav Bar Stuff */
@@ -519,6 +519,7 @@ img {
     align-items: center;
     gap: 3rem;
     font-size: 3rem;
+    padding: 128px 32px;
 }
 
 .options-bar-wrapper.disappear {
