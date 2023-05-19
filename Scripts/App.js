@@ -121,7 +121,7 @@ const restartButton = document.getElementById("restart-test-button");
  * To be implemented restartButton Functions, should be call once actiavted by keybind or clicked.
  */
 function restartButtonFunction() {
-    clearInterval(window.timer);
+    gameInteruptionStop();
     startGame();
 }
 
@@ -133,6 +133,7 @@ let initialStatus, vowelStatus, toneStatus; //True = on, False = off
  *      The id of the html elements.
  */
 function selectDifficulties(id) {
+    restartButtonFunction();
     const difficulties = document.getElementById(id);
     switch (id) {
         case 'initial':
@@ -162,6 +163,7 @@ const durationDisplay = document.getElementById('duration-counter'); //duration-
  *      Terminate method if the measures if already selected.
  */
 function selectMeasures(id) {
+    restartButtonFunction();
     const measures = document.getElementById(id);
     if (measures.classList.contains('selected')) {
         return;
@@ -197,6 +199,7 @@ function selectMeasures(id) {
  *      Terminate method if the measures if already selected.
  */
 function selectDurations(measure, id) {
+    restartButtonFunction();
     let allDurationsIDs, durations;
     switch (measure) {
         case 1:
@@ -377,7 +380,7 @@ typeDetectionZone.addEventListener('keyup', typing => {
 
     //handling spaces
     if (isSpace) {
-        if (indexOfCorrectinputKey === 0) {
+        if (indexOfCorrectinputKey === 0 && currentCharacterInputKey == 0) {
             return;
         }
         if (expect === ' ' && !currentCharacter.classList.contains('incorrect')) {
@@ -405,7 +408,7 @@ typeDetectionZone.addEventListener('keyup', typing => {
 
     //Adjust scrolling down effect.
     if (isLetter || isSpace) {
-        if (currentCharacter.getBoundingClientRect().top > topMost + 70) {
+        if (currentCharacter.getBoundingClientRect().top >= topMost + 71) {
             const margin = parseInt(lineHTML.style.marginTop || '0px');
             lineHTML.style.marginTop = (margin - 71) + 'px';
         }
@@ -452,7 +455,7 @@ typeDetectionZone.addEventListener('keyup', typing => {
 
         //Adjust scroll backup stuff.
         const leftMost = lineHTML.getBoundingClientRect().left;
-        if (currentCharacter.getBoundingClientRect().top <= topMost + 70 && leftMost + 20 >= currentCharacter.getBoundingClientRect().left) {
+        if (currentCharacter.getBoundingClientRect().top < topMost + 71 && leftMost + 20 >= currentCharacter.getBoundingClientRect().left) {
             const margin = parseInt(lineHTML.style.marginTop || '0px');
             if (margin >= 0) {
                 return;
@@ -507,6 +510,13 @@ function gameOver() {
     addClass(statArea, 'appear');
     wpmDisplay.innerHTML = getWPM();
     accuracyDisplay.innerHTML = getAccuracy();
+}
+
+/**
+ * Reset Timer if midgame button pauses.
+ */
+function gameInteruptionStop() {
+    clearInterval(window.timer);
 }
 
 /**
