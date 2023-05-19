@@ -20,7 +20,7 @@ window.gameStarted = null;
  */
 function startWeb() {
     webpageTheme = true;
-    if(localStorage.getItem('isDarkMode') == 1 ) {
+    if (localStorage.getItem('isDarkMode') == 1) {
         switchThemes();
     }
     measure = 1;
