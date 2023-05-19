@@ -408,7 +408,7 @@ typeDetectionZone.addEventListener('keyup', typing => {
 
     if (isBackSpace) {
         //if this is the first character
-        if (indexOfCorrectinputKey == 0) {
+        if (indexOfCorrectinputKey == 0 && currentCharacterInputKey.length == 0) {
             return;
         }
         //if the character is a single character
@@ -420,7 +420,7 @@ typeDetectionZone.addEventListener('keyup', typing => {
                 if the item poped == wrong character, remove current character incorrect class. 
         */
         if (!(correctinputKey[indexOfCorrectinputKey - 1] === ' ')) {
-            indexOfCorrectinputKey--;
+            indexOfCorrectinputKey = Math.max(0, indexOfCorrectinputKey - 1);
             if (correctinputKey[indexOfCorrectinputKey] !== currentCharacterInputKey.pop()) {
                 removeClass(currentCharacter, 'incorrect');
             }
