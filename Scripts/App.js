@@ -81,7 +81,7 @@ function removeClass(el, name) {
 //Theme of the webpages
 let webpageTheme; // true -> light mode, false -> dark mode.
 const currentTheme = document.getElementById("themes"); //the icon to indicate which mode the user is in.
-
+const body = document.body;
 /**
  * Switches the theme of the website, current code only include the animations and icon changes.
  */
@@ -92,6 +92,7 @@ function switchThemes() {
             currentTheme.src = "../Img/moon_icon.png";
             currentTheme.srcset = "../Img/moon_icon.svg";
             currentTheme.alt = "Dark Mode";
+            addClass(body, 'dark');
         }, 150);
 
     } else {
@@ -99,6 +100,7 @@ function switchThemes() {
             currentTheme.src = "../Img/sun_icon.png";
             currentTheme.srcset = "../Img/sun_icon.svg";
             currentTheme.alt = "Light Mode";
+            removeClass(body, 'dark');
         }, 150);
     }
     setTimeout(function () {
@@ -351,7 +353,6 @@ typeDetectionZone.addEventListener('keyup', typing => {
             }
             break;
     }
-    console.log(remainsWord);
 
     //Ignored invalid input
     if (!isLetter && !isSpace && !isBackSpace) {
@@ -512,8 +513,10 @@ function getWPM() {
     switch (measure) {
         case 1:
             result = (amountOfCorrectWords / timeMeasureDuration).toFixed(2) * 60;
+            break;
         default:
             result = (amountOfCorrectWords / timePassed).toFixed(2) * 60;
+            break;
     }
     return result;
 }
