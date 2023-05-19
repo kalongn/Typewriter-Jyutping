@@ -20,6 +20,9 @@ window.gameStarted = null;
  */
 function startWeb() {
     webpageTheme = true;
+    if(localStorage.getItem('isDarkMode') == 1 ) {
+        switchThemes();
+    }
     measure = 1;
     timeMeasureDuration = 15;
     wordsMeasureDuration = 10;
@@ -93,6 +96,7 @@ function switchThemes() {
             currentTheme.srcset = "../Img/moon_icon.svg";
             currentTheme.alt = "Dark Mode";
             addClass(body, 'dark');
+            localStorage.setItem('isDarkMode', 1);
         }, 150);
 
     } else {
@@ -101,6 +105,7 @@ function switchThemes() {
             currentTheme.srcset = "../Img/sun_icon.svg";
             currentTheme.alt = "Light Mode";
             removeClass(body, 'dark');
+            localStorage.setItem('isDarkMode', 0);
         }, 150);
     }
     setTimeout(function () {
