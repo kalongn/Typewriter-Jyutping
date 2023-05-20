@@ -443,7 +443,6 @@ img {
     flex-wrap: wrap;
     gap: 6px;
     filter: blur(3px);
-    transition: margin .3s ease-in-out;
 }
 
 .line .characters-wrapper {
