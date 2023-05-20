@@ -434,6 +434,12 @@ typeDetectionZone.addEventListener('keyup', typing => {
         if (indexOfCorrectinputKey == 0 && currentCharacterInputKey.length == 0) {
             return;
         }
+
+        //if the previous character is correct, backspae should do nothing.
+        if (currentCharacter.previousSibling.classList.contains('correct')) {
+            return;
+        }
+        
         //if the character is a single character
         // Need to think about how backspacing detect the "wrong character"
         /*
@@ -447,10 +453,6 @@ typeDetectionZone.addEventListener('keyup', typing => {
             if (correctinputKey[indexOfCorrectinputKey] !== currentCharacterInputKey.pop()) {
                 removeClass(currentCharacter, 'incorrect');
             }
-            return;
-        }
-        //if the previous character is correct, backspae should do nothing.
-        if (currentCharacter.previousSibling.classList.contains('correct')) {
             return;
         }
 
