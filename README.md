@@ -9,3 +9,5 @@
 ### Inspired by:
 * https://monkeytype.com/
 * Yuk Yi (Friend of mine)
+
+### EXPECT BUGS!!!
