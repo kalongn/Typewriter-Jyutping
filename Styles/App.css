@@ -22,7 +22,7 @@ body {
     width: 100vw;
     background-color: var(--color-primary);
     color: var(--color-secondary);
-    transition: all .1s ease-in-out;
+    transition: all .1s ease;
 }
 
 :root {
@@ -242,7 +242,7 @@ img {
 }
 
 .dark .icon {
-    filter: invert(29%) sepia(94%) saturate(2592%) hue-rotate(214deg) brightness(94%) contrast(87%);
+    filter: invert(99%) sepia(4%) saturate(2853%) hue-rotate(201deg) brightness(117%) contrast(93%);
 }
 
 .icon-link-wrapper:hover {
